@@ -64,6 +64,10 @@ public class PlayerMov : MonoBehaviour
             _animator.SetBool("Walk", false);
             _animator.SetBool("Run", false);
         }
+        if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        {
+            _animator.SetBool("Walk", true);
+        }
     }
 
     private void PlayerMovement()
@@ -92,8 +96,6 @@ public class PlayerMov : MonoBehaviour
 
         else
         {
-            _animator.SetBool("Run", false);
-            _animator.SetBool("Walk", false);
             walking = true;
             movementSpeed = Mathf.Clamp(movementSpeed, walkSpeed, Time.deltaTime * runBuildUpSpeed);
         }

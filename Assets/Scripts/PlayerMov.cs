@@ -21,6 +21,8 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float jumpMultiplier;
     [SerializeField] private KeyCode jumpKey;
 
+    [SerializeField] private float crouchHeight;
+
     private bool isJumping;
 
     private Animator _animator;
@@ -35,6 +37,19 @@ public class PlayerMov : MonoBehaviour
     private void Update()
     {
         PlayerMovement();
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            charController.height = 1;
+            movementSpeed = 0.5f;
+            isJumping = true;
+
+        }
+        else
+        {
+            charController.height = 2;
+            isJumping = false;
+        }
 
         if (walking == false)
         {

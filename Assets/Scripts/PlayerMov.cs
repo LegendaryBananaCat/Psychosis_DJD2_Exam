@@ -76,16 +76,16 @@ public class PlayerMov : MonoBehaviour
     {
         if (Input.GetKey(runKey))
         {
-            walking = true;
-            //_animator.SetBool("Run", true);
-            //_animator.SetBool("Walk", false);
+            walking = false;
             movementSpeed = Mathf.Lerp(movementSpeed, runSpeed, Time.deltaTime * runBuildUpSpeed);
+            _animator.SetBool("Run", true);
+            _animator.SetBool("Walk", false);
         }
 
         else
         {
-            //_animator.SetBool("Walk", true);
-            //_animator.SetBool("Run", false);
+            _animator.SetBool("Run", false);
+            _animator.SetBool("Walk", false);
             walking = true;
             movementSpeed = Mathf.Clamp(movementSpeed, walkSpeed, Time.deltaTime * runBuildUpSpeed);
         }

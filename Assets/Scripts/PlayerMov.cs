@@ -44,6 +44,14 @@ public class PlayerMov : MonoBehaviour
             movementSpeed = 0.5f;
             isJumping = true;
 
+            if (walking == true)
+            {
+                _animator.SetBool("Walk", true);
+            }
+            else
+            {
+                _animator.SetBool("Walk", false);
+            }
         }
         else
         {

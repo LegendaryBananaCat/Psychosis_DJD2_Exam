@@ -23,11 +23,16 @@ public class MapDraw : MonoBehaviour
 
             if(Physics.Raycast(Ray, out hit))
             {
-                var go = Instantiate(brush, hit.point + Vector3.down * 0.1f, Quaternion.identity, transform);
+                var go = Instantiate(brush, hit.point + hit.collider.gameObject.transform.up * 0.01f, Quaternion.identity, transform);
                 go.transform.localScale = Vector3.one * brushSize;
-                go.transform.forward = hit.normal;
+                go.transform.forward = hit.collider.gameObject.transform.up;
             }
         }
 
+    }
+
+    public void Save()
+    {
+        Debug.Log("Saved");
     }
 }

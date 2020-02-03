@@ -12,7 +12,6 @@ public class Collectables : MonoBehaviour
     void Start()
     {
         mapOpen = false;
-        pLook = GetComponent<PlayerLook>();
     }
 
     // Update is called once per frame
@@ -26,14 +25,14 @@ public class Collectables : MonoBehaviour
             Cursor.visible = true;
             pLook.enabled = false;
         }
-        if (Input.GetButtonDown("Map") && mapOpen == true)
+        else if (Input.GetButtonDown("Map") && mapOpen == true)
         {
             mapOpen = false;
             map.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.lockState = CursorLockMode.Locked; 
             Cursor.visible = false;
-            pLook.enabled = false;
+            pLook.enabled = true;
         }
     }
 }

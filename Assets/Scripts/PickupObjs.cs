@@ -37,9 +37,9 @@ public class PickupObjs : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (objDistance <= 2)
+        Debug.Log("EEEE");
+        if (objDistance <= 2 && pickedUp == false)
         {
-            Debug.Log("EEEE");
             indicCross.SetActive(true);
             newText.SetText("Pick Up");
             actionDisplay.SetActive(true);
@@ -92,10 +92,10 @@ public class PickupObjs : MonoBehaviour
 
     void DropObj()
     {
+        pickedObj.transform.position = new Vector3(newObj.transform.position.x, newObj.transform.position.y, newObj.transform.position.z);
         pickedUp = false;
         fakeObj.SetActive(true);
         newObj.SetActive(false);
         this.GetComponent<BoxCollider>().enabled = true;
-        pickedObj.transform.position = newObj.transform.position;
     }
 }

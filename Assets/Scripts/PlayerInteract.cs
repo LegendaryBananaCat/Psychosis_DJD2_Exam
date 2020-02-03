@@ -11,7 +11,7 @@ public class PlayerInteract : MonoBehaviour
     {
         RaycastHit rHit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out rHit))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rHit, 500))
         {
             toTarget = rHit.distance;
             TargetDistance = toTarget;

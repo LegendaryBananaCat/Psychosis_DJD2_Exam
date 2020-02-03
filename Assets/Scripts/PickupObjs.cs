@@ -28,16 +28,11 @@ public class PickupObjs : MonoBehaviour
     {
         objDistance = PlayerInteract.TargetDistance;
 
-        if (Input.GetKeyDown("d") && pickedUp == true)
+        if (Input.GetKeyDown("d"))
         {
-            Debug.Log("Here");
             DropObj();
         }
-    }
 
-    void OnMouseOver()
-    {
-        Debug.Log("EEEE");
         if (objDistance <= 2 && pickedUp == false)
         {
             indicCross.SetActive(true);
@@ -70,6 +65,11 @@ public class PickupObjs : MonoBehaviour
         }
     }
 
+    void OnMouseOver()
+    {
+        
+    }
+
     void OnMouseExit()
     {
         indicCross.SetActive(false);
@@ -79,19 +79,22 @@ public class PickupObjs : MonoBehaviour
 
     void PickUp()
     {
+        newText.SetText(" ");
         pickedUp = true;
         this.GetComponent<BoxCollider>().enabled = false;
-        newText.SetText(" ");
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
-        indicCross.SetActive(false);
         fakeObj.SetActive(false);
         newObj.SetActive(true);
-        //doorSound.Play();
     }
 
     void DropObj()
     {
+        if (pickedUp == false)
+        {
+            return;
+        }
+
         pickedObj.transform.position = new Vector3(newObj.transform.position.x, newObj.transform.position.y, newObj.transform.position.z);
         pickedUp = false;
         fakeObj.SetActive(true);

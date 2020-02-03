@@ -25,6 +25,7 @@ public class MapDraw : MonoBehaviour
             {
                 var go = Instantiate(brush, hit.point + Vector3.down * 0.1f, Quaternion.identity, transform);
                 go.transform.localScale = Vector3.one * brushSize;
+                go.transform.forward = hit.normal;
             }
         }
 

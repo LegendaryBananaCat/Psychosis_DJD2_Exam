@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - Brush
+  - Interactible
   layers:
   - Default
   - TransparentFX

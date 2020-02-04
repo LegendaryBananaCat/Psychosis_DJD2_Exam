@@ -11,7 +11,7 @@ public class Collectables : MonoBehaviour
     [SerializeField]
     private PlayerLook pLook;
 
-    private bool mapOpen;
+    public bool mapOpen;
     // Start is called before the first frame update
     void Start()
     {

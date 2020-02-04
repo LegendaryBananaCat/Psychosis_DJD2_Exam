@@ -19,7 +19,6 @@ public class PickupObjs : MonoBehaviour
     public GameObject fakeObj;
     private bool pickedUp;
 
-
     private void Start()
     {
         pickedUp = false;
@@ -28,7 +27,19 @@ public class PickupObjs : MonoBehaviour
     {
         objDistance = PlayerInteract.TargetDistance;
 
-        if (Input.GetKeyDown("d"))
+        ObjsDistance();
+    }
+
+    void OnMouseExit()
+    {
+        indicCross.SetActive(false);
+        actionDisplay.SetActive(false);
+        actionText.SetActive(false);
+    }
+    
+    void ObjsDistance()
+    {
+        if (Input.GetButtonDown("Drop"))
         {
             DropObj();
         }
@@ -63,18 +74,7 @@ public class PickupObjs : MonoBehaviour
                 }
             }
         }
-    }
 
-    void OnMouseOver()
-    {
-        
-    }
-
-    void OnMouseExit()
-    {
-        indicCross.SetActive(false);
-        actionDisplay.SetActive(false);
-        actionText.SetActive(false);
     }
 
     void PickUp()

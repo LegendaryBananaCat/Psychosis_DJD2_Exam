@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class PatrollAgent : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] wayPoints;
+    [SerializeField] private Transform[] wayPoints;
     private int target = 0;
+
     public Transform playerPos;
+    public Transform roomPoint;
 
-    [SerializeField]
-    private float remainingDistance = 0.5f;
+    [SerializeField] private float remainingDistance = 0.5f;
 
-    [SerializeField]
-    bool noise;
+    [SerializeField] bool noise;
+    [SerializeField] bool checkUp;
 
     private NavMeshAgent agent;
 
@@ -22,9 +22,10 @@ public class PatrollAgent : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.autoBraking = false;
+        //agent.autoBraking = false;
 
         noise = false;
+        checkUp = false;
 
         NextPoint();
     }
@@ -32,7 +33,15 @@ public class PatrollAgent : MonoBehaviour
 
     void Update()
     {
-            StartPath();
+        SeePlayer();
+        StartPath();
+
+        if(noise == true)
+        {
+            agent.speed = 6;
+        }
+        else
+            agent.speed = 4;
     }
 
     void NextPoint()
@@ -55,7 +64,14 @@ public class PatrollAgent : MonoBehaviour
         }
 
         if(noise == true)
+        {
             FollowPlayer();
+        }
+
+        if(checkUp == true)
+        {
+            RoomCheckup();
+        }
     }
 
     void FollowPlayer()
@@ -66,5 +82,20 @@ public class PatrollAgent : MonoBehaviour
         }
 
         agent.destination = playerPos.position;
+    }
+
+    void RoomCheckup()
+    {
+        if (roomPoint == null)
+        {
+            return;
+        }
+
+        agent.destination = roomPoint.position;
+    }
+
+    void SeePlayer()
+    {
+
     }
 }

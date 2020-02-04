@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class MapDraw : MonoBehaviour
@@ -16,7 +17,7 @@ public class MapDraw : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             var Ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -31,8 +32,12 @@ public class MapDraw : MonoBehaviour
 
     }
 
-    public void Save()
+    public void ClearBrush(string tag)
     {
-        Debug.Log("Saved");
+        GameObject[] gameObjects = GameObject.FindGameObjectsWithTag(tag);
+        foreach(GameObject brush in gameObjects)
+        {
+            GameObject.Destroy(brush);
+        }
     }
 }

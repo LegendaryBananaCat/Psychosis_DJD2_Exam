@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Collectables : MonoBehaviour
 {
-    public GameObject map;
-    public PlayerLook pLook;
+    [SerializeField]
+    private GameObject map;
+    [SerializeField]
+    private GameObject clearButton;
+    [SerializeField]
+    private PlayerLook pLook;
 
     private bool mapOpen;
     // Start is called before the first frame update
@@ -21,6 +25,7 @@ public class Collectables : MonoBehaviour
         {
             mapOpen = true;
             map.SetActive(true);
+            clearButton.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             pLook.enabled = false;
@@ -29,6 +34,7 @@ public class Collectables : MonoBehaviour
         {
             mapOpen = false;
             map.SetActive(false);
+            clearButton.SetActive(false);
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.lockState = CursorLockMode.Locked; 
             Cursor.visible = false;

@@ -140,20 +140,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &29300376
-Transform:
+--- !u!224 &29300376
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29300375}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.926, z: 0.8}
-  m_LocalScale: {x: 0.118361935, y: 0.118362114, z: 0.07069478}
+  m_LocalPosition: {x: 0, y: 0, z: 0.8}
+  m_LocalScale: {x: 0.118361935, y: 0.11836223, z: 0.07069484}
   m_Children: []
   m_Father: {fileID: 788754605}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.926}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!64 &29300377
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -227,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brush: {fileID: 4828249218444099965, guid: 1569227a13e63f2478371507da3dd7bc, type: 3}
-  brushSize: 0.1
+  brushSize: 0.01
 --- !u!1 &59311117
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,6 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 788754604}
+  clearButton: {fileID: 262306822}
   pLook: {fileID: 963194229}
 --- !u!1 &217883970
 GameObject:
@@ -757,8 +763,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 739.6, y: -437.1}
-  m_SizeDelta: {x: 286.62, y: 63.79}
+  m_AnchoredPosition: {x: 700, y: 228.5}
+  m_SizeDelta: {x: 406, y: 76.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &262306824
 MonoBehaviour:
@@ -802,7 +808,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 262306825}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 29300380}
+        m_MethodName: ClearBrush
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Brush
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &262306825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1165,7 +1182,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Put Away
+  m_text: Clear
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1234,10 +1251,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 679089088}
-    characterCount: 8
+    characterCount: 5
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1

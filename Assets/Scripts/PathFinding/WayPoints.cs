@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WayPoints : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class WayPoints : MonoBehaviour
             FollowPlayer();
         }
         else
-        FollowPath();
+            FollowPath();
     }
 
     void FollowPath()
@@ -47,6 +48,7 @@ public class WayPoints : MonoBehaviour
         {
             Vector3 pos = Vector3.MoveTowards(transform.position, playerPos.position, speed * Time.deltaTime);
             GetComponent<Rigidbody>().MovePosition(pos);
+
         }
     }
 }

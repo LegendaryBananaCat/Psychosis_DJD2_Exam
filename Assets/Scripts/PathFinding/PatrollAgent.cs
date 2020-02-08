@@ -16,6 +16,8 @@ public class PatrollAgent : MonoBehaviour
     [SerializeField] bool noise;
     [SerializeField] bool checkUp;
 
+    [SerializeField] private KeyCode runKey;
+
     private NavMeshAgent agent;
 
 
@@ -36,7 +38,16 @@ public class PatrollAgent : MonoBehaviour
         SeePlayer();
         StartPath();
 
-        if(noise == true)
+        if (Input.GetKey(runKey))
+        {
+            noise = true;
+        }
+        else
+        {
+            noise = false;
+        }
+
+        if (noise == true)
         {
             agent.speed = 6;
         }

@@ -15,6 +15,7 @@ TagManager:
   - Phone
   - Exit2
   - Exit1
+  - Hide
   layers:
   - Default
   - TransparentFX

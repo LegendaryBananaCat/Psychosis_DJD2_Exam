@@ -24,6 +24,7 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float crouchHeight;
 
     private bool isJumping;
+    public bool hidden;
 
     private Animator _animator;
 
@@ -38,36 +39,18 @@ public class PlayerMov : MonoBehaviour
     {
         PlayerMovement();
 
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            charController.height = 1;
-            movementSpeed = 0.5f;
-            isJumping = true;
+        Crouch();
 
-            if (walking == true)
-            {
-                _animator.SetBool("Walk", true);
-            }
-            else
-            {
-                _animator.SetBool("Walk", false);
-            }
-        }
-        else
-        {
-            charController.height = 2;
-            isJumping = false;
-        }
 
-        if (walking == false)
-        {
-            _animator.SetBool("Walk", false);
-            _animator.SetBool("Run", false);
-        }
-        if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
-        {
-            _animator.SetBool("Walk", true);
-        }
+        //if (walking == false)
+        //{
+        //    _animator.SetBool("Walk", false);
+        //    _animator.SetBool("Run", false);
+        //}
+        //if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
+        //{
+        //    _animator.SetBool("Walk", true);
+        //}
     }
 
     private void PlayerMovement()
@@ -107,6 +90,47 @@ public class PlayerMov : MonoBehaviour
         {
             isJumping = true;
             StartCoroutine(JumpEvent());
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Hide")
+        {
+            hidden = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Hide")
+        {
+            hidden = false;
+        }
+    }
+
+    void Crouch()
+    {
+        if (Input.GetKey(KeyCode.LeftControl) || hidden == true)
+        {
+            charController.height = crouchHeight;
+            movementSpeed = 0.5f;
+            isJumping = true;
+
+            //if (walking == true)
+            //{
+            //    _animator.SetBool("Walk", true);
+            //}
+            //else
+            //{
+            //    _animator.SetBool("Walk", false);
+            //}
+        }
+
+        else
+        {
+            charController.height = 2;
+            isJumping = false;
         }
     }
 

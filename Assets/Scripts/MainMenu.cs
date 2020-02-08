@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public Animator camAnim;
     public Animator doorAnim;
 
+
     public void StartGame()
     {
         mainMenu.SetActive(false);

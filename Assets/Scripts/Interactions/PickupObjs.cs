@@ -95,7 +95,7 @@ public class PickupObjs : MonoBehaviour
             return;
         }
 
-        pickedObj.transform.position = new Vector3(newObj.transform.position.x, newObj.transform.position.y + 2, newObj.transform.position.z);
+        pickedObj.transform.position = new Vector3(newObj.transform.position.x, newObj.transform.position.y + 1, newObj.transform.position.z);
         pickedUp = false;
         fakeObj.SetActive(true);
         newObj.SetActive(false);

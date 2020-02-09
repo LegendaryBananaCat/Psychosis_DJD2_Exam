@@ -10,11 +10,10 @@ public class CodeLock : MonoBehaviour
     public string code = "";
     public string attemptedCode;
 
-    public Transform toOpen;
-
     private Animator _animator;
 
     public GameObject WrongPanel;
+    public GameObject RightPanel;
 
     private void Start()
     {
@@ -26,12 +25,14 @@ public class CodeLock : MonoBehaviour
     {
         if(attemptedCode == code)
         {
+            StartCoroutine(ShowRightInputMessage());
+
             _animator.SetBool("Open", true);
         }
+
         else
         {
             StartCoroutine(ShowWrongInputMessage());
-           
         }
     }
 
@@ -42,6 +43,15 @@ public class CodeLock : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         WrongPanel.SetActive(false); ;
+    }
+
+    IEnumerator ShowRightInputMessage()
+    {
+        RightPanel.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        RightPanel.SetActive(false); ;
     }
 
     public void SetValue(string value)

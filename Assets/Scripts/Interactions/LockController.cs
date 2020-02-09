@@ -11,7 +11,7 @@ public class LockController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetButtonDown("Action"))
         {
             CheckHitObj();
         }

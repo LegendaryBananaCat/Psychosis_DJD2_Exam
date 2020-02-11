@@ -61,7 +61,7 @@ LODGroup:
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 23000010814598202}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &1000012413998696
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,8 +368,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978644806697914297}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2626, z: 0.000000029802322}
-  m_LocalScale: {x: 0.45024, y: 0.5128328, z: 0.81049}
+  m_LocalPosition: {x: 0, y: 0.252, z: 0.000000029802322}
+  m_LocalScale: {x: 0.45024, y: 0.49178284, z: 0.81049}
   m_Children: []
   m_Father: {fileID: 4000012487215136}
   m_RootOrder: 3

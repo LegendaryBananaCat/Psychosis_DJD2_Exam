@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 6019925005372934163}
   - component: {fileID: 4756671195279368416}
   - component: {fileID: 34511757826138638}
-  - component: {fileID: 1418235175270794581}
+  - component: {fileID: 4220837488613988697}
   m_Layer: 0
   m_Name: ItemTrigger
   m_TagString: BDoorJey
@@ -203,7 +203,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1418235175270794581
+--- !u!114 &4220837488613988697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5640355472743166493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b62ba9b1dbcc745947efa6be31f3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: b073bc3299ba053468c6ab39b70898fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objDistance: 0
@@ -220,6 +220,9 @@ MonoBehaviour:
   actionText: {fileID: 0}
   indicCross: {fileID: 0}
   newText: {fileID: 0}
-  pickedObj: {fileID: 0}
-  newObj: {fileID: 0}
-  fakeObj: {fileID: 0}
+  BackDKey: 0
+  FrontDKey: 0
+  Pliers: 0
+  pickedObjectGroup: {fileID: 0}
+  pickedObject: {fileID: 0}
+  objPlayer: {fileID: 0}

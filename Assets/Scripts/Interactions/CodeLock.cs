@@ -12,13 +12,22 @@ public class CodeLock : MonoBehaviour
 
     private Animator _animator;
 
+    public bool door1;
+
     public GameObject WrongPanel;
     public GameObject RightPanel;
+
+    private GameObject Exitdoors;
+    private ExitDoors EDS;
+
 
     private void Start()
     {
         _animator = GetComponentInParent<Animator>();
         codeLength = code.Length;
+
+        Exitdoors = GameObject.FindGameObjectWithTag("ExitDoor");
+        EDS = Exitdoors.GetComponent<ExitDoors>();
     }
 
     void CheckCode()
@@ -51,7 +60,14 @@ public class CodeLock : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        RightPanel.SetActive(false); ;
+        RightPanel.SetActive(false);
+
+        if(door1 == true)
+        {
+            EDS.PuzzleD1_3 = true;
+        }
+        else
+            EDS.PuzzleD2_3 = true;
     }
 
     public void SetValue(string value)

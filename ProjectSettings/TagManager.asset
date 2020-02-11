@@ -16,6 +16,8 @@ TagManager:
   - Exit2
   - Exit1
   - Hide
+  - Plier
+  - ExitDoor
   layers:
   - Default
   - TransparentFX

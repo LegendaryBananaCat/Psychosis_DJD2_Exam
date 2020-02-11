@@ -6,7 +6,6 @@ using TMPro;
 
 public class Dooropen : MonoBehaviour
 {
-
     public float objDistance;
     public GameObject actionDisplay;
     public GameObject actionText;

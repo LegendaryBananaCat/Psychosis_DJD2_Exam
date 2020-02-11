@@ -17,17 +17,14 @@ public class CodeLock : MonoBehaviour
     public GameObject WrongPanel;
     public GameObject RightPanel;
 
-    private GameObject Exitdoors;
-    private ExitDoors EDS;
+    public bool doneCLk1 = false;
+    public bool doneCLk2 = false;
 
 
     private void Start()
     {
         _animator = GetComponentInParent<Animator>();
         codeLength = code.Length;
-
-        Exitdoors = GameObject.FindGameObjectWithTag("ExitDoor");
-        EDS = Exitdoors.GetComponent<ExitDoors>();
     }
 
     void CheckCode()
@@ -36,7 +33,12 @@ public class CodeLock : MonoBehaviour
         {
             StartCoroutine(ShowRightInputMessage());
 
-            _animator.SetBool("Open", true);
+            if (door1 == true)
+            {
+                doneCLk1 = true;
+            }
+            else
+                doneCLk2 = true;
         }
 
         else
@@ -49,7 +51,7 @@ public class CodeLock : MonoBehaviour
     {
         WrongPanel.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         WrongPanel.SetActive(false); ;
     }
@@ -58,16 +60,11 @@ public class CodeLock : MonoBehaviour
     {
         RightPanel.SetActive(true);
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         RightPanel.SetActive(false);
 
-        if(door1 == true)
-        {
-            EDS.PuzzleD1_3 = true;
-        }
-        else
-            EDS.PuzzleD2_3 = true;
+        Destroy(this);
     }
 
     public void SetValue(string value)

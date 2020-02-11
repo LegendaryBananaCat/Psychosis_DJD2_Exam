@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour
         camAnim.SetTrigger("Play");
         doorAnim.SetTrigger("Open");
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(PlayTimmer());
     }
 
     public void Controls()
@@ -56,24 +56,25 @@ public class MainMenu : MonoBehaviour
         controlMenu.SetActive(false);
         pagesMenu.SetActive(false);
 
-        StartCoroutine(MMMenu());
+        mainMenu.SetActive(true);
     }
 
-    IEnumerator MMMenu()
+    IEnumerator PlayTimmer()
     {
         yield return new WaitForSeconds(2);
-        mainMenu.SetActive(true);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     IEnumerator ControlsMenu()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         controlMenu.SetActive(true);
     }
 
     IEnumerator PagesMenu()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2.5f);
         pagesMenu.SetActive(true);
     }
 

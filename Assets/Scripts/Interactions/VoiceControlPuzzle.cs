@@ -10,13 +10,12 @@ public class VoiceControlPuzzle : MonoBehaviour
     public GameObject PmonologueObj;
     public TMP_Text Pmonologue;
 
-    private GameObject Exitdoors;
-    private ExitDoors EDS;
-
 
     bool truePassW;
     bool fakePassW;
     bool wrongPassW;
+
+    public bool doneVC1 = false;
 
 
     // Start is called before the first frame update
@@ -27,9 +26,6 @@ public class VoiceControlPuzzle : MonoBehaviour
         truePassW = false;
         fakePassW = false;
         wrongPassW = false;
-
-        Exitdoors = GameObject.FindGameObjectWithTag("ExitDoor");
-        EDS = Exitdoors.GetComponent<ExitDoors>();
     }
 
 
@@ -39,7 +35,7 @@ public class VoiceControlPuzzle : MonoBehaviour
         {
             truePassW = true;
             StartCoroutine(MonologueManage());
-            EDS.PuzzleD1_2 = true;
+            doneVC1 = true;
         }
 
         else if(inputF.text == "Open sesame" || inputF.text == "Open sesame!" ||inputF.text == "You shall not pass" || inputF.text == "You shall not pass!")

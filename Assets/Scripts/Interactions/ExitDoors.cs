@@ -16,22 +16,54 @@ public class ExitDoors : MonoBehaviour
     public GameObject keyD2;
     public GameObject pliersD2;
 
-    public bool PuzzleD1_1 = false;
-    public bool PuzzleD1_2 = false;
-    public bool PuzzleD1_3 = false;
 
-    public bool PuzzleD2_1 = false;
-    public bool PuzzleD2_2 = false;
-    public bool PuzzleD2_3 = false;
 
-    private bool canExit1 = false;
-    private bool canExit2 = false;
+    public bool PuzzleD1_1;
+    public bool PuzzleD1_2;
+    public bool PuzzleD1_3;
+
+    public bool PuzzleD2_1;
+    public bool PuzzleD2_2;
+    public bool PuzzleD2_3;
+
+    private bool canExit1;
+    private bool canExit2;
+
+    public GameObject PadLock1;
+    public GameObject PadLock2;
+    public GameObject VoiceRecg;
+    private CodeLock CLck1;
+    private CodeLock CLck2;
+    private VoiceControlPuzzle VCP;
 
     //public AudioSource doorSound;
+
+    private void Start()
+    {
+        CLck1 = PadLock1.GetComponent<CodeLock>();
+        CLck2 = PadLock2.GetComponent<CodeLock>();
+        VCP = VoiceRecg.GetComponent<VoiceControlPuzzle>();
+
+        PuzzleD1_1 = false;
+        PuzzleD1_2 = false;
+        PuzzleD1_3 = false;
+
+        PuzzleD2_1 = false;
+        PuzzleD2_2 = false;
+        PuzzleD2_3 = false;
+
+        canExit1 = false;
+        canExit2 = false;
+    }
 
     void Update()
     {
         objDistance = PlayerInteract.TargetDistance;
+
+        PuzzleD1_3 = CLck2.doneCLk1;
+        PuzzleD2_3 = CLck1.doneCLk2;
+
+        PuzzleD1_2 = VCP.doneVC1;
     }
 
     void OnMouseOver()

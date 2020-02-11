@@ -48,7 +48,6 @@ public class ObjPickUp : MonoBehaviour
     {
         if (objDistance <= 2)
         {
-            
             indicCross.SetActive(true);
             actionDisplay.SetActive(true);
             actionText.SetActive(true);

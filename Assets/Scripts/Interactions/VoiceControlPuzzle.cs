@@ -5,11 +5,19 @@ using TMPro;
 
 public class VoiceControlPuzzle : MonoBehaviour
 {
+    public float objDistance;
+    public GameObject actionDisplay;
+    public GameObject actionText;
+    public GameObject indicCross;
+    public TMP_Text newText;
+    //public AudioSource doorSound;
+
+    private bool Inputactive;
+
     public TMP_InputField inputF;
 
     public GameObject PmonologueObj;
     public TMP_Text Pmonologue;
-
 
     bool truePassW;
     bool fakePassW;
@@ -17,8 +25,8 @@ public class VoiceControlPuzzle : MonoBehaviour
 
     public bool doneVC1 = false;
 
+    [SerializeField]private PlayerLook pLook;
 
-    // Start is called before the first frame update
     void Start()
     {
         PmonologueObj.SetActive(false);
@@ -26,12 +34,59 @@ public class VoiceControlPuzzle : MonoBehaviour
         truePassW = false;
         fakePassW = false;
         wrongPassW = false;
+        Inputactive = false;
     }
 
-
-    void PlayerInput()
+    private void Update()
     {
-        if(inputF.text == "no" || inputF.text == "no")
+        objDistance = PlayerInteract.TargetDistance;
+    }
+
+    void OnMouseOver()
+    {
+        if(Inputactive == false)
+        {
+            if (objDistance <= 2)
+            {
+                indicCross.SetActive(true);
+                actionDisplay.SetActive(true);
+                actionText.SetActive(true);
+                newText.SetText("Input Voice Password.");
+            }
+
+            else
+            {
+                newText.SetText(" ");
+                actionDisplay.SetActive(false);
+                actionText.SetActive(false);
+            }
+
+            if (Input.GetButtonDown("Action"))
+            {
+                if (objDistance <= 2)
+                {
+                    PmonologueObj.SetActive(true);
+                    Inputactive = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    pLook.enabled = false;
+                    PlayerInput();
+                }
+            }
+        }
+    }
+
+    void OnMouseExit()
+    {
+        indicCross.SetActive(false);
+        actionDisplay.SetActive(false);
+        actionText.SetActive(false);
+    }
+
+    public void PlayerInput()
+    {
+        Debug.Log("Here");
+        if (inputF.text == "no" || inputF.text == "no")
         {
             truePassW = true;
             StartCoroutine(MonologueManage());
@@ -62,6 +117,14 @@ public class VoiceControlPuzzle : MonoBehaviour
 
             PmonologueObj.SetActive(false);
             Pmonologue.text = " ";
+            Inputactive = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pLook.enabled = true;
+
+
+            Destroy(this);
         }
 
         else if (truePassW == true)
@@ -73,6 +136,11 @@ public class VoiceControlPuzzle : MonoBehaviour
 
             PmonologueObj.SetActive(false);
             Pmonologue.text = " ";
+            Inputactive = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pLook.enabled = true;
         }
 
         else if (truePassW == true)
@@ -84,6 +152,11 @@ public class VoiceControlPuzzle : MonoBehaviour
 
             PmonologueObj.SetActive(false);
             Pmonologue.text = " ";
+            Inputactive = false;
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            pLook.enabled = true;
         }
     }
 }

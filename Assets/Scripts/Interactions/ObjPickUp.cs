@@ -22,6 +22,17 @@ public class ObjPickUp : MonoBehaviour
     public GameObject pickedObject;
     public GameObject objPlayer;
 
+    public GameObject DoorF;
+    public GameObject DoorB;
+    ExitDoors ExDF;
+    ExitDoors ExDB;
+
+    private void Start()
+    {
+        ExDF = DoorF.GetComponent<ExitDoors>();
+        ExDB = DoorB.GetComponent<ExitDoors>();
+    }
+
     void Update()
     {
         objDistance = PlayerInteract.TargetDistance;
@@ -42,10 +53,9 @@ public class ObjPickUp : MonoBehaviour
             actionDisplay.SetActive(true);
             actionText.SetActive(true);
 
-            if(FrontDKey == true)
+            if (FrontDKey == true)
             {
                 newText.SetText("Pick Up Front Door Key");
-                pickedUp = true;
             }
 
             if (BackDKey == true)
@@ -77,7 +87,6 @@ public class ObjPickUp : MonoBehaviour
 
                 if (pickedUp == true)
                 {
-                    Debug.Log("Yes");
                     DropObj();
                     PickUpObj();
                 }
@@ -101,7 +110,22 @@ public class ObjPickUp : MonoBehaviour
         actionText.SetActive(false);
         pickedObject.SetActive(false);
         objPlayer.SetActive(true);
-     }
+
+        if (FrontDKey == true)
+        {
+            ExDF.PuzzleD1_1 = true;
+        }
+
+        if (BackDKey == true)
+        {
+            ExDB.PuzzleD2_1 = true;
+        }
+
+        if (Pliers == true)
+        {
+            ExDB.PuzzleD2_2 = true;
+        }
+    }
 
     void DropObj()
     {
@@ -113,8 +137,30 @@ public class ObjPickUp : MonoBehaviour
         pickedUp = false;
         pickedObject.SetActive(true);
         objPlayer.SetActive(false);
-        pickedObjectGroup.transform.position = new Vector3(objPlayer.transform.position.x, -0.0147f, objPlayer.transform.position.z);
+        if(Pliers == true)
+        {
+            pickedObjectGroup.transform.position = new Vector3(objPlayer.transform.position.x, 0.019f, objPlayer.transform.position.z);
+        }
+        else
+            pickedObjectGroup.transform.position = new Vector3(objPlayer.transform.position.x, -0.0147f, objPlayer.transform.position.z);
+
         this.GetComponent<BoxCollider>().enabled = true;
+
+        if (FrontDKey == true)
+        {
+            ExDF.PuzzleD1_1 = false;
+        }
+
+        if (BackDKey == true)
+        {
+            ExDB.PuzzleD2_1 = false;
+        }
+
+        if (Pliers == true)
+        {
+            ExDB.PuzzleD2_2 = false;
+        }
+
         StartCoroutine(OriginPos());
     }
 

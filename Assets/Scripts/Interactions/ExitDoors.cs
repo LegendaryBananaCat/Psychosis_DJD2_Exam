@@ -12,10 +12,9 @@ public class ExitDoors : MonoBehaviour
     public GameObject indicCross;
     public TMP_Text newText;
 
-    public GameObject keyD1;
-    public GameObject keyD2;
-    public GameObject pliersD2;
-
+    //public GameObject keyD1;
+    //public GameObject keyD2;
+    //public GameObject pliersD2;
 
 
     public bool PuzzleD1_1;
@@ -94,35 +93,35 @@ public class ExitDoors : MonoBehaviour
 
     void PuzzleManag()
     {
-        if (keyD1.activeInHierarchy == true)
-        {
-            GameObject[] key1 = GameObject.FindGameObjectsWithTag("FDoorKey");
-            foreach (GameObject keys in key1)
-                GameObject.Destroy(keys);
+        //if (keyD1.activeInHierarchy == true)
+        //{
+        //    GameObject[] key1 = GameObject.FindGameObjectsWithTag("FDoorKey");
+        //    foreach (GameObject keys in key1)
+        //        GameObject.Destroy(keys);
 
-            PuzzleD1_1 = true;
-        }
+        //    PuzzleD1_1 = true;
+        //}
 
-        else if (keyD2.activeInHierarchy == true)
-        {
-            GameObject[] key2 = GameObject.FindGameObjectsWithTag("BDoorKey");
-            foreach (GameObject keys in key2)
-                GameObject.Destroy(keys);
+        //else if (keyD2.activeInHierarchy == true)
+        //{
+        //    GameObject[] key2 = GameObject.FindGameObjectsWithTag("BDoorKey");
+        //    foreach (GameObject keys in key2)
+        //        GameObject.Destroy(keys);
 
-            PuzzleD2_1 = true;
-        }
+        //    PuzzleD2_1 = true;
+        //}
 
-        else if (pliersD2.activeInHierarchy == true)
-        {
-            GameObject[] Ppliers = GameObject.FindGameObjectsWithTag("Plier");
-            foreach (GameObject Pplier in Ppliers)
-                GameObject.Destroy(Pplier);
+        //else if (pliersD2.activeInHierarchy == true)
+        //{
+        //    GameObject[] Ppliers = GameObject.FindGameObjectsWithTag("Plier");
+        //    foreach (GameObject Pplier in Ppliers)
+        //        GameObject.Destroy(Pplier);
 
-            PuzzleD2_2 = true;
-        }
+        //    PuzzleD2_2 = true;
+        //}
 
 
-        else if (PuzzleD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
+        if (PuzzleD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
         {
             canExit1 = true;
             newText.SetText(" ");

@@ -323,9 +323,6 @@ MonoBehaviour:
   actionText: {fileID: 1188992184}
   indicCross: {fileID: 1410834548}
   newText: {fileID: 1188992186}
-  keyD1: {fileID: 1288820668}
-  keyD2: {fileID: 1200306702}
-  pliersD2: {fileID: 1217134016}
   PuzzleD1_1: 0
   PuzzleD1_2: 0
   PuzzleD1_3: 0
@@ -16611,6 +16608,21 @@ PrefabInstance:
       propertyPath: pickedObjectGroup
       value: 
       objectReference: {fileID: 2025829391}
+    - target: {fileID: 4220837488613988697, guid: 41d1cac196452694fb10f2476db79e6e,
+        type: 3}
+      propertyPath: InventManag
+      value: 
+      objectReference: {fileID: 686211067}
+    - target: {fileID: 4220837488613988697, guid: 41d1cac196452694fb10f2476db79e6e,
+        type: 3}
+      propertyPath: DoorB
+      value: 
+      objectReference: {fileID: 14502389}
+    - target: {fileID: 4220837488613988697, guid: 41d1cac196452694fb10f2476db79e6e,
+        type: 3}
+      propertyPath: DoorF
+      value: 
+      objectReference: {fileID: 879091939}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41d1cac196452694fb10f2476db79e6e, type: 3}
 --- !u!4 &595541370 stripped
@@ -19190,6 +19202,7 @@ GameObject:
   - component: {fileID: 686211070}
   - component: {fileID: 686211069}
   - component: {fileID: 686211071}
+  - component: {fileID: 686211072}
   m_Layer: 0
   m_Name: GameManagder
   m_TagString: Untagged
@@ -19249,6 +19262,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2d7b1e1cf3d87a479ddd32bbf387e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &686211072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 686211067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db0b4c017909ab439dbd41f74d2d2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &688097699
@@ -24872,9 +24897,6 @@ MonoBehaviour:
   actionText: {fileID: 1188992184}
   indicCross: {fileID: 1410834548}
   newText: {fileID: 1188992186}
-  keyD1: {fileID: 1288820668}
-  keyD2: {fileID: 1200306702}
-  pliersD2: {fileID: 1217134016}
   PuzzleD1_1: 0
   PuzzleD1_2: 0
   PuzzleD1_3: 0
@@ -47103,6 +47125,21 @@ PrefabInstance:
       propertyPath: pickedObjectGroup
       value: 
       objectReference: {fileID: 1809599829}
+    - target: {fileID: 9139280205075679961, guid: cc5de5e674870ca479a40105f80555ad,
+        type: 3}
+      propertyPath: InventManag
+      value: 
+      objectReference: {fileID: 686211067}
+    - target: {fileID: 9139280205075679961, guid: cc5de5e674870ca479a40105f80555ad,
+        type: 3}
+      propertyPath: DoorB
+      value: 
+      objectReference: {fileID: 14502389}
+    - target: {fileID: 9139280205075679961, guid: cc5de5e674870ca479a40105f80555ad,
+        type: 3}
+      propertyPath: DoorF
+      value: 
+      objectReference: {fileID: 879091939}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc5de5e674870ca479a40105f80555ad, type: 3}
 --- !u!1 &1809795757 stripped
@@ -55802,3 +55839,5 @@ MonoBehaviour:
   pickedObjectGroup: {fileID: 1081060646}
   pickedObject: {fileID: 1292563416494554}
   objPlayer: {fileID: 1217134016}
+  DoorF: {fileID: 879091939}
+  DoorB: {fileID: 14502389}

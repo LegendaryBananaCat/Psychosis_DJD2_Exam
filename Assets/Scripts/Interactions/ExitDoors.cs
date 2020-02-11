@@ -11,11 +11,10 @@ public class ExitDoors : MonoBehaviour
     public GameObject actionText;
     public GameObject indicCross;
     public TMP_Text newText;
+    public TMP_Text doorInfo;
 
-    //public GameObject keyD1;
-    //public GameObject keyD2;
-    //public GameObject pliersD2;
-
+    public bool door1;
+    public bool firstInteraction = false;
 
     public bool PuzzleD1_1;
     public bool PuzzleD1_2;
@@ -72,6 +71,8 @@ public class ExitDoors : MonoBehaviour
             indicCross.SetActive(true);
             actionDisplay.SetActive(true);
             actionText.SetActive(true);
+            newText.SetText("Go Play Outside.");
+
         }
 
         else
@@ -86,69 +87,49 @@ public class ExitDoors : MonoBehaviour
         {
             if (objDistance <= 2)
             {
-                PuzzleManag();
+                if (firstInteraction == false)
+                    StartCoroutine(DoorInfo());
+                else
+                    PuzzleManag();
             }
         }
     }
 
     void PuzzleManag()
     {
-        //if (keyD1.activeInHierarchy == true)
-        //{
-        //    GameObject[] key1 = GameObject.FindGameObjectsWithTag("FDoorKey");
-        //    foreach (GameObject keys in key1)
-        //        GameObject.Destroy(keys);
-
-        //    PuzzleD1_1 = true;
-        //}
-
-        //else if (keyD2.activeInHierarchy == true)
-        //{
-        //    GameObject[] key2 = GameObject.FindGameObjectsWithTag("BDoorKey");
-        //    foreach (GameObject keys in key2)
-        //        GameObject.Destroy(keys);
-
-        //    PuzzleD2_1 = true;
-        //}
-
-        //else if (pliersD2.activeInHierarchy == true)
-        //{
-        //    GameObject[] Ppliers = GameObject.FindGameObjectsWithTag("Plier");
-        //    foreach (GameObject Pplier in Ppliers)
-        //        GameObject.Destroy(Pplier);
-
-        //    PuzzleD2_2 = true;
-        //}
-
-
-        if (PuzzleD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
+        if(door1 == true)
         {
-            canExit1 = true;
-            newText.SetText(" ");
-            actionDisplay.SetActive(false);
-            actionText.SetActive(false);
-            //doorSound.Play();
-            Debug.Log("Won!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-
-        else if (PuzzleD2_1 == true && PuzzleD2_2 == true && PuzzleD2_3 == true)
-        {
-            canExit2 = true;
-            newText.SetText(" ");
-            actionDisplay.SetActive(false);
-            actionText.SetActive(false);
-            //doorSound.Play();
-            Debug.Log("Won!");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            if (PuzzleD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
+            {
+                canExit1 = true;
+                newText.SetText(" ");
+                actionDisplay.SetActive(false);
+                actionText.SetActive(false);
+                StartCoroutine(DoorInfo());
+            }
+            else
+            {
+                StartCoroutine(NextScene());
+                actionDisplay.SetActive(false);
+            }
         }
 
         else
         {
-            newText.SetText("We still need to find more things...");
-            actionDisplay.SetActive(false);
-            actionText.SetActive(false);
-            //doorSound.Play();
+            if (PuzzleD2_1 == true && PuzzleD2_2 == true && PuzzleD2_3 == true)
+            {
+                Debug.Log("Here");
+                canExit2 = true;
+                newText.SetText(" ");
+                actionDisplay.SetActive(false);
+                actionText.SetActive(false);
+                StartCoroutine(NextScene());
+            }
+            else
+            {
+                StartCoroutine(DoorInfoAfter());
+                actionDisplay.SetActive(false);
+            }
         }
     }
 
@@ -157,5 +138,90 @@ public class ExitDoors : MonoBehaviour
         indicCross.SetActive(false);
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
+    }
+
+    IEnumerator DoorInfo()
+    {
+        if(firstInteraction == false)
+        {
+            if (door1 == true)
+            {
+                doorInfo.SetText("Oh! I know!Dad told me about this door!");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("Let's see...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("He said I need a Key...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...a Combination of Objects...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...and a Voice Password...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...for the Box on the Left");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("Yeah, that was it!");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText(" ");
+                firstInteraction = true;
+            }
+            else
+            {
+                doorInfo.SetText("This door... Hum...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("I think I need a Key...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...a Plier for the Locks...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...and a 6 digt Code!");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("They should be around here...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText(" ");
+                firstInteraction = true;
+            }
+        }
+    }
+
+    IEnumerator DoorInfoAfter()
+    {
+        if (firstInteraction == true)
+        {
+            if (door1 == true)
+            {
+                doorInfo.SetText("I'm still missing something...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("Remember Rose, we need a Key...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...a Combination of Objects...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("... And a Voice Password...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("... for the Box on the Left.");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText(" ");
+            }
+            else
+            {
+                doorInfo.SetText("I really want to go outside, but I'm missing something...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("Don't forget, a Key...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...a Plier for the Lock...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("...and a 6 digt Code.");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText("Better take a second look around...");
+                yield return new WaitForSeconds(2);
+                doorInfo.SetText(" ");
+            }
+        }
+    }
+
+    IEnumerator NextScene()
+    {
+        //FadeOut
+        //doorSound.Play();
+        yield return new WaitForSeconds(2);
+        Debug.Log("Won!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

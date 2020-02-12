@@ -170,6 +170,12 @@ public class ObjPickUp : MonoBehaviour
             yield return new WaitForSeconds(15);
 
             pickedObjectGroup.transform.position = new Vector3(-7.045f, 0.681f, -22.69f);
+
+
+            if (pickedUp == true)
+            {
+                yield return new WaitForSeconds(1);
+            }
         }
 
         if (BackDKey == true)
@@ -177,6 +183,11 @@ public class ObjPickUp : MonoBehaviour
             yield return new WaitForSeconds(15);
 
             pickedObjectGroup.transform.position = new Vector3(25.543f, -0.0147f, -7.654f);
+
+            if (pickedUp == true)
+            {
+                yield return new WaitForSeconds(1);
+            }
         }
 
         if (Pliers == true)
@@ -184,6 +195,11 @@ public class ObjPickUp : MonoBehaviour
             yield return new WaitForSeconds(15);
 
             pickedObjectGroup.transform.position = new Vector3(-4.8195f, 0.1357f, -14.6125f);
+
+            if (pickedUp == true)
+            {
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

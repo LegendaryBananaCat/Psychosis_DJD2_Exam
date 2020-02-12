@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 1
+  m_GIWorkflowMode: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -329,9 +329,12 @@ MonoBehaviour:
   PuzzleD1_1: 0
   PuzzleD1_2: 0
   PuzzleD1_3: 0
+  PD1_1: 0
   PuzzleD2_1: 0
   PuzzleD2_2: 0
   PuzzleD2_3: 0
+  PD2_1: 0
+  PD2_2: 0
   PadLock1: {fileID: 267649127}
   PadLock2: {fileID: 373062036}
   VoiceRecg: {fileID: 1306819332}
@@ -24784,9 +24787,12 @@ MonoBehaviour:
   PuzzleD1_1: 0
   PuzzleD1_2: 0
   PuzzleD1_3: 0
+  PD1_1: 0
   PuzzleD2_1: 0
   PuzzleD2_2: 0
   PuzzleD2_3: 0
+  PD2_1: 0
+  PD2_2: 0
   PadLock1: {fileID: 267649127}
   PadLock2: {fileID: 373062036}
   VoiceRecg: {fileID: 1306819332}

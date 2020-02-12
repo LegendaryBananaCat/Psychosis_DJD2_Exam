@@ -19,10 +19,13 @@ public class ExitDoors : MonoBehaviour
     public bool PuzzleD1_1;
     public bool PuzzleD1_2;
     public bool PuzzleD1_3;
+    public bool PD1_1;
 
     public bool PuzzleD2_1;
     public bool PuzzleD2_2;
     public bool PuzzleD2_3;
+    public bool PD2_1;
+    public bool PD2_2;
 
     private bool canExit1;
     private bool canExit2;
@@ -45,10 +48,13 @@ public class ExitDoors : MonoBehaviour
         PuzzleD1_1 = false;
         PuzzleD1_2 = false;
         PuzzleD1_3 = false;
+        PD1_1 = false;
 
         PuzzleD2_1 = false;
         PuzzleD2_2 = false;
         PuzzleD2_3 = false;
+        PD2_1 = false;
+        PD2_2 = false;
 
         canExit1 = false;
         canExit2 = false;
@@ -58,10 +64,10 @@ public class ExitDoors : MonoBehaviour
     {
         objDistance = PlayerInteract.TargetDistance;
 
-        PuzzleD1_3 = CLck2.doneCLk1;
-        PuzzleD2_3 = CLck1.doneCLk2;
-
         PuzzleD1_2 = VCP.doneVC1;
+        PuzzleD1_3 = CLck2.doneCLk1;
+
+        PuzzleD2_3 = CLck1.doneCLk2;
     }
 
     void OnMouseOver()
@@ -87,10 +93,7 @@ public class ExitDoors : MonoBehaviour
         {
             if (objDistance <= 2)
             {
-                if (firstInteraction == false)
-                    StartCoroutine(DoorInfo());
-                else
-                    PuzzleManag();
+                PuzzleManag();
             }
         }
     }
@@ -99,25 +102,102 @@ public class ExitDoors : MonoBehaviour
     {
         if(door1 == true)
         {
-            if (PuzzleD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
+            if (PuzzleD1_1 == true)
+            {
+                StartCoroutine(UseObj());
+                PD1_1 = true;
+            }
+
+            if (PuzzleD2_1 == true)
+            {
+                StartCoroutine(UseObj());
+                PD2_1 = true;
+            }
+
+            if (PuzzleD2_2 == true)
+            {
+                StartCoroutine(UseObj());
+                PD2_2 = true;
+            }
+
+            else if (firstInteraction == false)
+            {
+                StartCoroutine(DoorInfo());
+            }
+
+            else if (PD1_1 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else if (PD2_1 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else if (PD2_2 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else if (PD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
             {
                 canExit1 = true;
                 newText.SetText(" ");
                 actionDisplay.SetActive(false);
                 actionText.SetActive(false);
-                StartCoroutine(DoorInfo());
+                StartCoroutine(NextScene());
             }
+
             else
             {
-                StartCoroutine(NextScene());
+                StartCoroutine(DoorInfoAfter());
                 actionDisplay.SetActive(false);
             }
         }
 
         else
         {
-            if (PuzzleD2_1 == true && PuzzleD2_2 == true && PuzzleD2_3 == true)
+            if (PuzzleD1_1 == true)
             {
+                StartCoroutine(UseObj());
+                PD1_1 = true;
+            }
+
+            if (PuzzleD2_1 == true)
+            {
+                StartCoroutine(UseObj());
+                PD2_1 = true;
+            }
+
+            if (PuzzleD2_2 == true)
+            {
+                StartCoroutine(UseObj());
+                PD2_2 = true;
+            }
+
+            else if (firstInteraction == false)
+            {
+                StartCoroutine(DoorInfo());
+            }
+
+            else if (PD1_1 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else if (PD2_1 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else if (PD2_2 == true)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            if (PD2_1 == true && PD2_2 == true && PuzzleD2_3 == true)
+            { 
                 Debug.Log("Here");
                 canExit2 = true;
                 newText.SetText(" ");
@@ -125,6 +205,7 @@ public class ExitDoors : MonoBehaviour
                 actionText.SetActive(false);
                 StartCoroutine(NextScene());
             }
+
             else
             {
                 StartCoroutine(DoorInfoAfter());
@@ -214,6 +295,23 @@ public class ExitDoors : MonoBehaviour
                 doorInfo.SetText(" ");
             }
         }
+    }
+
+    IEnumerator UseObj()
+    {
+        doorInfo.SetText("OneDown!");
+        yield return new WaitForSeconds(2);
+        doorInfo.SetText("A couple more to go!");
+        yield return new WaitForSeconds(2);
+        doorInfo.SetText(" ");
+    }
+    IEnumerator AlreadyUsed()
+    {
+        doorInfo.SetText("I already used this.");
+        yield return new WaitForSeconds(2);
+        doorInfo.SetText("Better go look for the other ones.");
+        yield return new WaitForSeconds(2);
+        doorInfo.SetText(" ");
     }
 
     IEnumerator NextScene()

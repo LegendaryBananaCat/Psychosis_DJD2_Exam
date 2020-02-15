@@ -16,25 +16,21 @@ public class InventoryScript : MonoBehaviour
     public bool active;
 
     public GameObject OpenPage;
+    public GameObject PageMenuObj;
+
+    public PlayerLook pLook;
+    public TMP_Button MenuButton;
 
     void Start()
     {
         active = false;
+        MenuButton.interactable = false;
         notfyText.SetText(" ");
     }
 
     void Update()
     {
         objDistance = PlayerInteract.TargetDistance;
-
-        if (Input.GetButtonDown("Action"))
-        {
-            if (active == true)
-            {
-                active = false;
-                OpenPage.SetActive(false);
-            }
-        }
     }
     void OnMouseOver()
     {
@@ -44,7 +40,13 @@ public class InventoryScript : MonoBehaviour
             actionDisplay.SetActive(true);
             actionText.SetActive(true);
 
-            newText.SetText("Pick Up Page");
+
+            if(this.tag == ("PageMenu"))
+            {
+                newText.SetText("Open Page Collection");
+            }
+            else
+                newText.SetText("Pick Up Page");
         }
 
         else
@@ -56,16 +58,23 @@ public class InventoryScript : MonoBehaviour
 
         if (Input.GetButtonDown("Action"))
         {
-            Debug.Log("Here1");
-            if(active == false)
+            if (objDistance <= 2)
             {
-                Debug.Log("Here2");
-                if (objDistance <= 2)
+
+                if (this.tag == ("PageMenu"))
                 {
-                    Debug.Log("Here3");
+                    PageMenuObj.SetActive(true);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = true;
+                    pLook.enabled = false;
+                }
+
+                else
+                {
                     OpenPage.SetActive(true);
                     StartCoroutine(InventoryInfo());
-                    active = true;
                 }
             }
         }
@@ -76,15 +85,25 @@ public class InventoryScript : MonoBehaviour
         indicCross.SetActive(false);
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
+        OpenPage.SetActive(false);
     }
 
     IEnumerator InventoryInfo()
     {
-        Debug.Log("Here4");
         notfyText.SetText("Page added to 'Diaries' in the Begining Room.");
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         notfyText.SetText(" ");
+
+        MenuButton.interactable = true;
+    }
+
+    public void MenuExit()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        pLook.enabled = true;
     }
 }

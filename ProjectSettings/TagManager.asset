@@ -18,6 +18,7 @@ TagManager:
   - Hide
   - Plier
   - ExitDoor
+  - PageMenu
   layers:
   - Default
   - TransparentFX

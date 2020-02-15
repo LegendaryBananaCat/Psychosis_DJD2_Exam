@@ -40,7 +40,7 @@ public class PatrollAgent : MonoBehaviour
         SeePlayer();
         StartPath();
 
-        if (Input.GetKey(runKey))
+        if (Input.GetKey(runKey) || Input.GetButtonDown("Drop"))
         {
             noise = true;
         }

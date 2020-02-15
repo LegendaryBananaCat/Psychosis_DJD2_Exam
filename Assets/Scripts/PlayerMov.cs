@@ -26,12 +26,9 @@ public class PlayerMov : MonoBehaviour
     private bool isJumping;
     public bool hidden;
 
-    private Animator _animator;
-
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
-        _animator = GetComponentInChildren<Animator>();
         walking = false;
     }
 
@@ -40,17 +37,6 @@ public class PlayerMov : MonoBehaviour
         PlayerMovement();
 
         Crouch();
-
-
-        //if (walking == false)
-        //{
-        //    _animator.SetBool("Walk", false);
-        //    _animator.SetBool("Run", false);
-        //}
-        //if(Input.GetButtonDown("Horizontal") || Input.GetButtonDown("Vertical"))
-        //{
-        //    _animator.SetBool("Walk", true);
-        //}
     }
 
     private void PlayerMovement()
@@ -73,8 +59,6 @@ public class PlayerMov : MonoBehaviour
         {
             walking = false;
             movementSpeed = Mathf.Lerp(movementSpeed, runSpeed, Time.deltaTime * runBuildUpSpeed);
-            _animator.SetBool("Run", true);
-            _animator.SetBool("Walk", false);
         }
 
         else
@@ -116,15 +100,6 @@ public class PlayerMov : MonoBehaviour
             charController.height = crouchHeight;
             movementSpeed = 0.5f;
             isJumping = true;
-
-            //if (walking == true)
-            //{
-            //    _animator.SetBool("Walk", true);
-            //}
-            //else
-            //{
-            //    _animator.SetBool("Walk", false);
-            //}
         }
 
         else

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/Tests.unity
-    guid: 64d6dac3d4898f844b9bf3d3cbe69dc6
+    path: Assets/Scenes/YouWin.unity
+    guid: e0d29396f7e3f6a4682d200380f1b3c9
+  - enabled: 1
+    path: Assets/Scenes/YouLose.unity
+    guid: 791bfcd0626579f42832a52ddae51ae1
   m_configObjects: {}

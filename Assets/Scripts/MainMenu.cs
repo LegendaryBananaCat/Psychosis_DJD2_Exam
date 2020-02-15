@@ -46,8 +46,13 @@ public class MainMenu : MonoBehaviour
         camAnim.SetBool("Exit", true);
 
         StartCoroutine(ExitTime());
-    } 
+    }
 
+    public void ExitNow()
+    {
+        Debug.Log("ExitNow");
+        Application.Quit();
+    }
     public void Menu()
     {
         camAnim.SetBool("Change", false);

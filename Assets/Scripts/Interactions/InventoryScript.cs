@@ -55,8 +55,6 @@ public class InventoryScript : MonoBehaviour
             if (this.tag == ("Map"))
             {
                 newText.SetText("Pick Up Map & Pen");
-                CTb.enabled = true;
-                MapObj.SetActive(false);
             }
 
             else
@@ -74,15 +72,22 @@ public class InventoryScript : MonoBehaviour
         {
             if (objDistance <= 2)
             {
-
                 if (this.tag == ("PageMenu"))
                 {
+                    FindObjectOfType<SoundManager>().Play("Open_Book");
                     PageMenuObj.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     pLook.enabled = false;
+                }
+
+                else if (this.tag == ("Map"))
+                {
+                    FindObjectOfType<SoundManager>().Play("Obj_Pickup");
+                    CTb.enabled = true;
+                    MapObj.SetActive(false);
                 }
 
                 else
@@ -106,7 +111,7 @@ public class InventoryScript : MonoBehaviour
 
     IEnumerator InventoryInfo()
     {
-        notfyText.SetText("Page added to 'Diaries' in the Starting Room.");
+        notfyText.SetText("Page added to 'Page Collection' in the Starting Room.");
 
         yield return new WaitForSeconds(3);
 

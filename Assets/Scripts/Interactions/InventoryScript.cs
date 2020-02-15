@@ -19,13 +19,16 @@ public class InventoryScript : MonoBehaviour
     public GameObject PageMenuObj;
 
     public PlayerLook pLook;
-    public TMP_Button MenuButton;
+    public Button MenuButton;
+    private TMP_Text BTxt;
 
     void Start()
     {
         active = false;
         MenuButton.interactable = false;
         notfyText.SetText(" ");
+        BTxt = MenuButton.GetComponentInChildren<TMP_Text>();
+        BTxt.SetText("Not Found");
     }
 
     void Update()
@@ -74,6 +77,7 @@ public class InventoryScript : MonoBehaviour
                 else
                 {
                     OpenPage.SetActive(true);
+                    BTxt.SetText("Open");
                     StartCoroutine(InventoryInfo());
                 }
             }
@@ -86,13 +90,14 @@ public class InventoryScript : MonoBehaviour
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
         OpenPage.SetActive(false);
+        Destroy(this);
     }
 
     IEnumerator InventoryInfo()
     {
-        notfyText.SetText("Page added to 'Diaries' in the Begining Room.");
+        notfyText.SetText("Page added to 'Diaries' in the Starting Room.");
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
 
         notfyText.SetText(" ");
 

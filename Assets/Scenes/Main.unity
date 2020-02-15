@@ -10770,7 +10770,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1703454000}
-  - {fileID: 1365770246}
   - {fileID: 828736798}
   - {fileID: 1431545705}
   m_Father: {fileID: 1964509708}
@@ -13476,7 +13475,7 @@ GameObject:
   - component: {fileID: 426821472}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13491,7 +13490,9 @@ Transform:
   m_LocalRotation: {x: -0, y: -0.26047343, z: -0, w: 0.9654811}
   m_LocalPosition: {x: -0.02, y: 0.876, z: 3.822}
   m_LocalScale: {x: 0.039705843, y: 0.03970584, z: 0.039705843}
-  m_Children: []
+  m_Children:
+  - {fileID: 1365770246}
+  - {fileID: 642897798}
   m_Father: {fileID: 1964509708}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -30.196001, z: 0}
@@ -14549,7 +14550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &471280003
 Transform:
   m_ObjectHideFlags: 0
@@ -14732,8 +14733,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 153806292}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 1548151174}
+  CTb: {fileID: 0}
 --- !u!1001 &483625709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16799,8 +16802,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 1268725418}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 1804376470}
+  CTb: {fileID: 0}
 --- !u!1001 &582160363
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18583,6 +18588,124 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af30599495454a44b9ac7fd3150204d8, type: 3}
+--- !u!1 &642897797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 642897798}
+  - component: {fileID: 642897802}
+  - component: {fileID: 642897801}
+  - component: {fileID: 642897800}
+  - component: {fileID: 642897799}
+  m_Layer: 0
+  m_Name: ItemTrigger
+  m_TagString: Book
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &642897798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642897797}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10.5, y: 11.2, z: 0.60439515}
+  m_Children: []
+  m_Father: {fileID: 426821471}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -90.00001, y: 0, z: 0}
+--- !u!114 &642897799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642897797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a8d10c3d20ccc409374081a093c79a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objDistance: 0
+  actionDisplay: {fileID: 1206344787}
+  actionText: {fileID: 1188992184}
+  indicCross: {fileID: 1410834548}
+  newText: {fileID: 1188992186}
+  notfyText: {fileID: 34426263}
+  active: 0
+  OpenPage: {fileID: 1042949650}
+  PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 426821470}
+  pLook: {fileID: 0}
+  MenuButton: {fileID: 701831690}
+  CTb: {fileID: 686211070}
+--- !u!65 &642897800
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642897797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &642897801
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642897797}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &642897802
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642897797}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &643158756
 GameObject:
   m_ObjectHideFlags: 0
@@ -20327,7 +20450,6 @@ GameObject:
   - component: {fileID: 686211070}
   - component: {fileID: 686211069}
   - component: {fileID: 686211071}
-  - component: {fileID: 686211072}
   m_Layer: 0
   m_Name: GameManagder
   m_TagString: Untagged
@@ -20387,18 +20509,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2d7b1e1cf3d87a479ddd32bbf387e5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &686211072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686211067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5db0b4c017909ab439dbd41f74d2d2f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &688097699
@@ -30769,8 +30879,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 28193305}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 119250879}
+  CTb: {fileID: 0}
 --- !u!1 &1102463796
 GameObject:
   m_ObjectHideFlags: 0
@@ -32167,8 +32279,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 2059299852}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 1517912640}
+  CTb: {fileID: 0}
 --- !u!1001 &1147302761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -38303,7 +38417,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 346758679}
+    m_TransformParent: {fileID: 426821471}
     m_Modifications:
     - target: {fileID: 1000013012455610, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_Name
@@ -38311,35 +38425,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.255
+      value: 8.456252
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.889
+      value: 0.32740805
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.017
+      value: 0.7612192
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.24055693
+      value: 0.26801476
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8345224
+      value: 0.92977715
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.13729475
+      value: 0.06989679
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.47629288
+      value: 0.24248083
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -38352,6 +38466,18 @@ PrefabInstance:
     - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 32.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25.185223
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 25.185213
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013735626014, guid: ff87fc640ef177b4db7d10c2a030c9f2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 25.185219
       objectReference: {fileID: 0}
     - target: {fileID: 5381737843196254182, guid: ff87fc640ef177b4db7d10c2a030c9f2,
         type: 3}
@@ -45824,8 +45950,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 0}
   PageMenuObj: {fileID: 471280002}
+  MapObj: {fileID: 0}
   pLook: {fileID: 333015202}
   MenuButton: {fileID: 0}
+  CTb: {fileID: 0}
 --- !u!1001 &1648985742
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -53775,8 +53903,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 1042949650}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 701831690}
+  CTb: {fileID: 0}
 --- !u!1001 &1942887812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54058,8 +54188,10 @@ MonoBehaviour:
   active: 0
   OpenPage: {fileID: 2036956868}
   PageMenuObj: {fileID: 0}
+  MapObj: {fileID: 0}
   pLook: {fileID: 0}
   MenuButton: {fileID: 1791188812}
+  CTb: {fileID: 0}
 --- !u!1001 &1952836207
 PrefabInstance:
   m_ObjectHideFlags: 0

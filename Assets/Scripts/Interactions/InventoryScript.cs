@@ -17,10 +17,12 @@ public class InventoryScript : MonoBehaviour
 
     public GameObject OpenPage;
     public GameObject PageMenuObj;
+    public GameObject MapObj;
 
     public PlayerLook pLook;
     public Button MenuButton;
     private TMP_Text BTxt;
+    public Collectables CTb;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class InventoryScript : MonoBehaviour
         notfyText.SetText(" ");
         BTxt = MenuButton.GetComponentInChildren<TMP_Text>();
         BTxt.SetText("Not Found");
+        CTb.enabled = false;
     }
 
     void Update()
@@ -48,6 +51,14 @@ public class InventoryScript : MonoBehaviour
             {
                 newText.SetText("Open Page Collection");
             }
+
+            if (this.tag == ("Map"))
+            {
+                newText.SetText("Pick Up Map & Pen");
+                CTb.enabled = true;
+                MapObj.SetActive(false);
+            }
+
             else
                 newText.SetText("Pick Up Page");
         }

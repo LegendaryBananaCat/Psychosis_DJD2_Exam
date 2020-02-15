@@ -40,6 +40,7 @@ public class ObjectOrder : MonoBehaviour
 
     IEnumerator ShowWrongInputMessage()
     {
+        FindObjectOfType<SoundManager>().Play("PassW_Comb_Wrong");
         WrongPanel.SetActive(true);
 
         yield return new WaitForSeconds(1);
@@ -49,6 +50,7 @@ public class ObjectOrder : MonoBehaviour
 
     IEnumerator ShowRightInputMessage()
     {
+        FindObjectOfType<SoundManager>().Play("VoicePass_Comb_Right");
         RightPanel.SetActive(true);
 
         yield return new WaitForSeconds(1);

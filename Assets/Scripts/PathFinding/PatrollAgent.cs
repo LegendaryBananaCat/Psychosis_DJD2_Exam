@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 using UnityEngine;
 
 public class PatrollAgent : MonoBehaviour
@@ -20,11 +21,12 @@ public class PatrollAgent : MonoBehaviour
 
     private NavMeshAgent agent;
 
+    public AudioSource ad;
+
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        //agent.autoBraking = false;
 
         noise = false;
         checkUp = false;
@@ -50,9 +52,13 @@ public class PatrollAgent : MonoBehaviour
         if (noise == true)
         {
             agent.speed = 6;
+            ad.pitch = 1.7f;
         }
         else
+        {
             agent.speed = 4;
+            ad.pitch = 1;
+        }
     }
 
     void NextPoint()

@@ -1,8 +1,8 @@
-﻿using System;
-using UnityEngine.Audio;
+﻿using UnityEngine.Audio;
+using System;
 using UnityEngine;
 
-public class SoundManager: MonoBehaviour
+public class SoundManager : MonoBehaviour
 {
     public AudioAssets[] sounds;
 

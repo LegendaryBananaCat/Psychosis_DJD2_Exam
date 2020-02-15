@@ -32,7 +32,6 @@ public class VoiceControlPuzzle : MonoBehaviour
         PmonologueObj.SetActive(false);
         Pmonologue.text = " ";
         truePassW = false;
-        fakePassW = false;
         wrongPassW = false;
         Inputactive = false;
     }
@@ -85,7 +84,6 @@ public class VoiceControlPuzzle : MonoBehaviour
 
     public void PlayerInput()
     {
-        Debug.Log("Here");
         if (inputF.text == "no" || inputF.text == "no")
         {
             truePassW = true;
@@ -93,15 +91,9 @@ public class VoiceControlPuzzle : MonoBehaviour
             doneVC1 = true;
         }
 
-        else if(inputF.text == "Open sesame" || inputF.text == "Open sesame!" ||inputF.text == "You shall not pass" || inputF.text == "You shall not pass!")
-        {
-            fakePassW = true;
-            StartCoroutine(MonologueManage());
-        }
-
         else
         {
-            fakePassW = true;
+            wrongPassW = true;
             StartCoroutine(MonologueManage());
         }
     }
@@ -112,6 +104,7 @@ public class VoiceControlPuzzle : MonoBehaviour
         {
             PmonologueObj.SetActive(true);
             Pmonologue.text = "Yes! That was the right one! One more down!";
+            FindObjectOfType<SoundManager>().Play("PassW_Comb_Right");
 
             yield return new WaitForSeconds(1);
 
@@ -127,26 +120,11 @@ public class VoiceControlPuzzle : MonoBehaviour
             Destroy(this);
         }
 
-        else if (truePassW == true)
-        {
-            PmonologueObj.SetActive(true);
-            Pmonologue.text = "Meh. It was worth the try!";
-
-            yield return new WaitForSeconds(1);
-
-            PmonologueObj.SetActive(false);
-            Pmonologue.text = " ";
-            Inputactive = false;
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-            pLook.enabled = true;
-        }
-
-        else if (truePassW == true)
+        else if (wrongPassW == true)
         {
             PmonologueObj.SetActive(true);
             Pmonologue.text = "Wrong one. I bet it's some cheesy line or something. Yuck!";
+            FindObjectOfType<SoundManager>().Play("VoicePass_Wrong");
 
             yield return new WaitForSeconds(1);
 

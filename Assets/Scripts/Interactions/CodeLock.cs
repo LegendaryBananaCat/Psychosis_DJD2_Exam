@@ -49,6 +49,7 @@ public class CodeLock : MonoBehaviour
 
     IEnumerator ShowWrongInputMessage()
     {
+        FindObjectOfType<SoundManager>().Play("PassW_Comb_Wrong");
         WrongPanel.SetActive(true);
 
         yield return new WaitForSeconds(2);
@@ -58,6 +59,7 @@ public class CodeLock : MonoBehaviour
 
     IEnumerator ShowRightInputMessage()
     {
+        FindObjectOfType<SoundManager>().Play("PassW_Comb_Right");
         RightPanel.SetActive(true);
 
         yield return new WaitForSeconds(2);

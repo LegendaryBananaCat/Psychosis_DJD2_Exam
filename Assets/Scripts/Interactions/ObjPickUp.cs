@@ -11,9 +11,8 @@ public class ObjPickUp : MonoBehaviour
     public GameObject actionText;
     public GameObject indicCross;
     public TMP_Text newText;
-    //public AudioSource doorSound;
 
-    private bool pickedUp = false;
+    private bool pickedUp;
     public bool BackDKey;
     public bool FrontDKey;
     public bool Pliers;
@@ -29,6 +28,7 @@ public class ObjPickUp : MonoBehaviour
 
     private void Start()
     {
+        pickedUp = false;
         ExDF = DoorF.GetComponent<ExitDoors>();
         ExDB = DoorB.GetComponent<ExitDoors>();
     }
@@ -84,11 +84,11 @@ public class ObjPickUp : MonoBehaviour
                     PickUpObj();
                 }
 
-                if (pickedUp == true)
-                {
-                    DropObj();
-                    PickUpObj();
-                }
+                //if (pickedUp == true)
+                //{
+                //    DropObj();
+                //    PickUpObj();
+                //}
             }  
         }
     }
@@ -101,7 +101,8 @@ public class ObjPickUp : MonoBehaviour
     }
 
      void PickUpObj()
-     {
+    {
+        FindObjectOfType<SoundManager>().Play("Obj_Pickup");
         pickedUp = true;
         newText.SetText(" ");
         this.GetComponent<BoxCollider>().enabled = false;
@@ -133,6 +134,7 @@ public class ObjPickUp : MonoBehaviour
             return;
         }
 
+        FindObjectOfType<SoundManager>().Play("Obj_Drop");
         pickedUp = false;
         pickedObject.SetActive(true);
         objPlayer.SetActive(false);

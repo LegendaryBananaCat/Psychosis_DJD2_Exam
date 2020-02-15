@@ -51,6 +51,7 @@ public class Dooropen : MonoBehaviour
             {
                 if (doorOpen == false)
                 {
+                    FindObjectOfType<SoundManager>().Play("Door_Open");
                     newText.SetText(" ");
                     actionDisplay.SetActive(false);
                     actionText.SetActive(false);
@@ -68,6 +69,7 @@ public class Dooropen : MonoBehaviour
 
                 else
                 {
+                    FindObjectOfType<SoundManager>().Play("Door_Open");
                     newText.SetText(" ");
                     actionDisplay.SetActive(false);
                     actionText.SetActive(false);

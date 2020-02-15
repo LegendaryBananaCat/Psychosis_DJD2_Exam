@@ -2,75 +2,89 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class InventoryScript : MonoBehaviour
 {
-    public GameObject inventory;
-    private bool inventoryEnabled;
+    public float objDistance;
+    public GameObject actionDisplay;
+    public GameObject actionText;
+    public GameObject indicCross;
+    public TMP_Text newText;
+    public TMP_Text notfyText;
 
-    private int allSlots;
-    private int enabledSlots;
-    private GameObject[] slot;
+    public bool active;
 
-    public GameObject slotHolder;
+    public GameObject OpenPage;
 
-    private void Start()
+    void Start()
     {
-        allSlots = 9;
-        slot = new GameObject[allSlots];
+        active = false;
+        notfyText.SetText(" ");
+    }
 
-        for (int i = 0; i < allSlots; i++)
+    void Update()
+    {
+        objDistance = PlayerInteract.TargetDistance;
+
+        if (Input.GetButtonDown("Action"))
         {
-            slot[i] = slotHolder.transform.GetChild(i).gameObject;
-
-            if (slot[i].GetComponent<InventorySlot>().page = null)
+            if (active == true)
             {
-                slot[i].GetComponent<InventorySlot>().empty = true;
+                active = false;
+                OpenPage.SetActive(false);
             }
         }
     }
-
-
-    private void Update()
+    void OnMouseOver()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            inventoryEnabled = !inventoryEnabled;
+        if (objDistance <= 2)
+        {
+            indicCross.SetActive(true);
+            actionDisplay.SetActive(true);
+            actionText.SetActive(true);
 
-        if (inventoryEnabled == true)
-            inventory.SetActive(true);
+            newText.SetText("Pick Up Page");
+        }
+
         else
-            inventory.SetActive(false);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Book")
         {
-            GameObject pagePickedUp = other.gameObject;
-            InventoryItem page = pagePickedUp.GetComponent<InventoryItem>();
-            AddPage(pagePickedUp, page.ID, page.type, page.description, page.icon);
+            newText.SetText(" ");
+            actionDisplay.SetActive(false);
+            actionText.SetActive(false);
         }
-    }
 
-    void AddPage(GameObject pageObject, int pageID, string pageType, string pageDescription, Sprite pageIcon)
-    {
-        for (int i = 0; i < allSlots; i++)
+        if (Input.GetButtonDown("Action"))
         {
-            if(slot[i].GetComponent<InventorySlot>().empty)
+            Debug.Log("Here1");
+            if(active == false)
             {
-                pageObject.GetComponent<InventoryItem>().PickedUp = true;
-
-                slot[i].GetComponent<InventorySlot>().page = pageObject;
-                slot[i].GetComponent<InventorySlot>().icon = pageIcon;
-                slot[i].GetComponent<InventorySlot>().type = pageType;
-                slot[i].GetComponent<InventorySlot>().ID = pageID;
-                slot[i].GetComponent<InventorySlot>().description = pageDescription;
-
-                pageObject.transform.parent = slot[i].transform;
-                pageObject.SetActive(false);
-
-                slot[i].GetComponent<InventorySlot>().empty = false;
+                Debug.Log("Here2");
+                if (objDistance <= 2)
+                {
+                    Debug.Log("Here3");
+                    OpenPage.SetActive(true);
+                    StartCoroutine(InventoryInfo());
+                    active = true;
+                }
             }
         }
+    }
+
+    void OnMouseExit()
+    {
+        indicCross.SetActive(false);
+        actionDisplay.SetActive(false);
+        actionText.SetActive(false);
+    }
+
+    IEnumerator InventoryInfo()
+    {
+        Debug.Log("Here4");
+        notfyText.SetText("Page added to 'Diaries' in the Begining Room.");
+
+        yield return new WaitForSeconds(1);
+
+        notfyText.SetText(" ");
     }
 }

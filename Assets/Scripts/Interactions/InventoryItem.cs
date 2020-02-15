@@ -9,16 +9,21 @@ public class InventoryItem : MonoBehaviour
     public string description;
     public Sprite icon;
     public bool PickedUp;
+    public bool open;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        if(open == true)
+        {
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ItemUsage()
     {
-        
+        //if( type == page_1)
+        //{
+        //    open = true;
+        //}
     }
 }

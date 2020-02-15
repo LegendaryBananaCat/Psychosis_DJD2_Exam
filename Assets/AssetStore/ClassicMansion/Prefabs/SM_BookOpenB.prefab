@@ -106,7 +106,6 @@ GameObject:
   - component: {fileID: 2391973675489304448}
   - component: {fileID: 8819168183305854181}
   - component: {fileID: 3619604249871134523}
-  - component: {fileID: 2324854938684707750}
   m_Layer: 0
   m_Name: ItemTrigger
   m_TagString: Book
@@ -187,15 +186,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2324854938684707750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2916287675585010663}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b62ba9b1dbcc745947efa6be31f3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

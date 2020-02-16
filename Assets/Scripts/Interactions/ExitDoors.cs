@@ -249,19 +249,17 @@ public class ExitDoors : MonoBehaviour
             if (door1 == true)
             {
                 FindObjectOfType<SoundManager>().Play("Door_Locked");
-                doorInfo.SetText("Oh! I know!Dad told me about this door!");
-                yield return new WaitForSeconds(2);
+                doorInfo.SetText("i remember hearing something about this door.");
+                yield return new WaitForSeconds(3);
                 doorInfo.SetText("Let's see...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("He said I need a Key...");
+                doorInfo.SetText("We need a Key...");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText("...a Combination of Objects...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("...and a Voice Password...");
-                yield return new WaitForSeconds(2);
-                doorInfo.SetText("...for the Box on the Left");
-                yield return new WaitForSeconds(2);
-                doorInfo.SetText("Yeah, that was it!");
+                doorInfo.SetText("...and a Voice Password for that Box on the Left");
+                yield return new WaitForSeconds(3);
+                doorInfo.SetText("Now, if I were one of these, were would i be?");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText(" ");
                 firstInteraction = true;
@@ -270,15 +268,15 @@ public class ExitDoors : MonoBehaviour
             else
             {
                 FindObjectOfType<SoundManager>().Play("Door_Locked");
-                doorInfo.SetText("This door... Hum...");
+                doorInfo.SetText("Okay, for this one I think we need...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("I think I need a Key...");
+                doorInfo.SetText("a Key...");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText("...a Plier for the Locks...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("...and a 6 digt Code!");
+                doorInfo.SetText("...and a 6 digt Code.");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("They should be around here...");
+                doorInfo.SetText("They should be around here.");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText(" ");
                 firstInteraction = true;
@@ -293,22 +291,21 @@ public class ExitDoors : MonoBehaviour
             if (door1 == true)
             {
                 FindObjectOfType<SoundManager>().Play("Door_Locked");
-                doorInfo.SetText("I'm still missing something...");
+                doorInfo.SetText("We're still missing something...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("Remember Rose, we need a Key...");
+                doorInfo.SetText("Remember Rose, a Key...");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText("...a Combination of Objects...");
                 yield return new WaitForSeconds(2);
-                doorInfo.SetText("... And a Voice Password...");
-                yield return new WaitForSeconds(2);
-                doorInfo.SetText("... for the Box on the Left.");
+                doorInfo.SetText("... And a Voice Password for the Box on the Left.");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText(" ");
             }
+
             else
             {
                 FindObjectOfType<SoundManager>().Play("Door_Locked");
-                doorInfo.SetText("I really want to go outside, but I'm missing something...");
+                doorInfo.SetText("We must hurry, but something's still missing");
                 yield return new WaitForSeconds(2);
                 doorInfo.SetText("Don't forget, a Key...");
                 yield return new WaitForSeconds(2);
@@ -325,7 +322,7 @@ public class ExitDoors : MonoBehaviour
 
     IEnumerator UseObj()
     {
-        doorInfo.SetText("OneDown!");
+        doorInfo.SetText("Yes! OneDown!");
         yield return new WaitForSeconds(2);
         doorInfo.SetText("A couple more to go!");
         yield return new WaitForSeconds(2);

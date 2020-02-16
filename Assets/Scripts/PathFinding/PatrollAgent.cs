@@ -103,24 +103,23 @@ public class PatrollAgent : MonoBehaviour
     {
         if (hype == false)
         {
-            agent.speed = 6;
-            ad.pitch = 1.7f;
+            agent.speed = 2;
+            ad.pitch = 1;
         }
 
         else
         {
-            agent.speed = 2;
-            ad.pitch = 1;
+            agent.speed = 6;
+            ad.pitch = 1.7f;
         }
     }
 
     private IEnumerator CheckUp()
     {
         yield return new WaitForSeconds(300);
-        Debug.LogWarning("Checkup");
         FindObjectOfType<SoundManager>().Play("Alarm");
+        Debug.LogWarning("Checkup");
         agent.destination = roomPoint.position;
-
         StartCoroutine(CheckUp());
     }
 

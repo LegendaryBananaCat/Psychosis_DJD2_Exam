@@ -20,8 +20,14 @@ public class Dooropen : MonoBehaviour
 
     private bool opened = false;
 
+    public AudioSource ad;
+
     public NavMeshObstacle obstacle;
-    //public AudioSource doorSound;
+
+    private void Start()
+    {
+        ad = GetComponent<AudioSource>(); 
+    }
 
     void Update()
     {
@@ -92,7 +98,8 @@ public class Dooropen : MonoBehaviour
             return;
         }
 
-        FindObjectOfType<SoundManager>().Play("Door_Open");
+        //FindObjectOfType<SoundManager>().Play("Door_Open");
+        ad.Play(0);
 
         if (door1 == true)
             theDoor.GetComponent<Animation>().Play("Door1_Open");
@@ -114,7 +121,8 @@ public class Dooropen : MonoBehaviour
             return;
         }
 
-        FindObjectOfType<SoundManager>().Play("Door_Open");
+        //FindObjectOfType<SoundManager>().Play("Door_Open");
+        ad.Play(0);
 
         if (door1 == true)
             theDoor.GetComponent<Animation>().Play("Door1_Close");

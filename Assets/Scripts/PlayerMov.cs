@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,6 +47,8 @@ public class PlayerMov : MonoBehaviour
         PlayerMovement();
 
         Crouch();
+
+        GameOver();
     }
 
     private void PlayerMovement()
@@ -160,5 +163,13 @@ public class PlayerMov : MonoBehaviour
         charController.enabled = false;
         transform.position = teleportPoint;
         charController.enabled = true;
+    }
+
+    public void GameOver()
+    {
+        if(Lives <= 0)
+        {
+            SceneManager.LoadScene("YouLose");
+        }
     }
 }

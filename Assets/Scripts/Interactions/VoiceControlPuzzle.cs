@@ -85,7 +85,7 @@ public class VoiceControlPuzzle : MonoBehaviour
 
     public void PlayerInput()
     {
-        if (inputF.text == "no" || inputF.text == "No")
+        if (inputF.text == "skidaddle skidoodle" || inputF.text == "Skidaddle skidoodle")
         {
             truePassW = true;
             ED.voicePuzzle.PD = true;
@@ -126,7 +126,7 @@ public class VoiceControlPuzzle : MonoBehaviour
         else
         {
             PmonologueObj.SetActive(true);
-            Pmonologue.text = "Wrong one. I bet it's some cheesy line or something. Yuck!";
+            Pmonologue.text = "Wrong one. I bet it's something weird or from a movie...";
             FindObjectOfType<SoundManager>().Play("VoicePass_Wrong");
 
             yield return new WaitForSeconds(1);

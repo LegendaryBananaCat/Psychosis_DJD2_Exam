@@ -42,23 +42,36 @@ public class InventoryScript : MonoBehaviour
     {
         if (objDistance <= 2)
         {
-            indicCross.SetActive(true);
-            actionDisplay.SetActive(true);
-            actionText.SetActive(true);
-
-
-            if(this.tag == ("PageMenu"))
+            if (this.tag == ("PageMenu"))
             {
+                indicCross.SetActive(true);
+                actionDisplay.SetActive(true);
+                actionText.SetActive(true);
                 newText.SetText("Open Page Collection");
             }
 
-            if (this.tag == ("Map"))
+            else if (!OpenPage.active)
             {
-                newText.SetText("Pick Up Map & Pen");
+                indicCross.SetActive(true);
+                actionDisplay.SetActive(true);
+                actionText.SetActive(true);
+
+
+                if (this.tag == ("Map"))
+                {
+                    newText.SetText("Pick Up Map & Pen");
+                }
+
+                else
+                    newText.SetText("Pick Up Page");
             }
 
             else
-                newText.SetText("Pick Up Page");
+            {
+                newText.SetText(" ");
+                actionDisplay.SetActive(false);
+                actionText.SetActive(false);
+            }
         }
 
         else
@@ -96,6 +109,9 @@ public class InventoryScript : MonoBehaviour
 
                 else
                 {
+                    indicCross.SetActive(false);
+                    actionDisplay.SetActive(false);
+                    actionText.SetActive(false);
                     OpenPage.SetActive(true);
                     BTxt.SetText("Open");
                     StartCoroutine(InventoryInfo());
@@ -110,9 +126,6 @@ public class InventoryScript : MonoBehaviour
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
         OpenPage.SetActive(false);
-
-        if (this.tag != "Map")
-            Destroy(this);
     }
 
     IEnumerator InventoryInfo()

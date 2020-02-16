@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class ViewArea : MonoBehaviour
@@ -27,5 +28,4 @@ public class ViewArea : MonoBehaviour
             Pm.onHidden -= PA.onPlayerHidden;
         }
     }
-
 }

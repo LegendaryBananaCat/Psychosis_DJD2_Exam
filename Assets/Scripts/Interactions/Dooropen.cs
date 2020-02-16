@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.AI;
 using UnityEngine;
 using TMPro;
 
@@ -16,6 +17,10 @@ public class Dooropen : MonoBehaviour
     bool doorOpen = false;
     public bool door1;
     public bool door3;
+
+    private bool opened = false;
+
+    public NavMeshObstacle obstacle;
     //public AudioSource doorSound;
 
     void Update()
@@ -51,38 +56,22 @@ public class Dooropen : MonoBehaviour
             {
                 if (doorOpen == false)
                 {
-                    FindObjectOfType<SoundManager>().Play("Door_Open");
                     newText.SetText(" ");
                     actionDisplay.SetActive(false);
                     actionText.SetActive(false);
                     doorOpen = true;
-                    //doorSound.Play();
-                    if(door1 == true)
-                        theDoor.GetComponent<Animation>().Play("Door1_Open");
+                    OpenDoor();
 
-                    else if (door3 == true)
-                        theDoor.GetComponent<Animation>().Play("Door3_Open");
 
-                    else
-                        theDoor.GetComponent<Animation>().Play("Door2_Open");
                 }
 
                 else
                 {
-                    FindObjectOfType<SoundManager>().Play("Door_Open");
                     newText.SetText(" ");
                     actionDisplay.SetActive(false);
                     actionText.SetActive(false);
                     doorOpen = false;
-                    //doorSound.Play();
-                    if (door1 == true)
-                        theDoor.GetComponent<Animation>().Play("Door1_Close");
-
-                    else if (door3 == true)
-                        theDoor.GetComponent<Animation>().Play("Door3_Close");
-
-                    else
-                        theDoor.GetComponent<Animation>().Play("Door2_Close");
+                    CloseDoor();
                 }
 
             }
@@ -94,5 +83,49 @@ public class Dooropen : MonoBehaviour
         indicCross.SetActive(false);
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
+    }
+
+    public void OpenDoor()
+    {
+        if(opened)
+        {
+            return;
+        }
+
+        FindObjectOfType<SoundManager>().Play("Door_Open");
+
+        if (door1 == true)
+            theDoor.GetComponent<Animation>().Play("Door1_Open");
+
+        else if (door3 == true)
+            theDoor.GetComponent<Animation>().Play("Door3_Open");
+
+        else
+            theDoor.GetComponent<Animation>().Play("Door2_Open");
+
+        opened = true;
+        obstacle.enabled = true;
+    }
+
+    public void CloseDoor()
+    {
+        if (!opened)
+        {
+            return;
+        }
+
+        FindObjectOfType<SoundManager>().Play("Door_Open");
+
+        if (door1 == true)
+            theDoor.GetComponent<Animation>().Play("Door1_Close");
+
+        else if (door3 == true)
+            theDoor.GetComponent<Animation>().Play("Door3_Close");
+
+        else
+            theDoor.GetComponent<Animation>().Play("Door2_Close");
+
+        opened = false;
+        obstacle.enabled = false;
     }
 }

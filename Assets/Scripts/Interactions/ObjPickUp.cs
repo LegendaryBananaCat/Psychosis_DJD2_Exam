@@ -113,17 +113,21 @@ public class ObjPickUp : MonoBehaviour
 
         if (FrontDKey == true)
         {
-            ExDF.PuzzleD1_1 = true;
+            //ExDF.PuzzleD1_1 = true;
+
+            ExDF.keyPuzzle.PD = true;
         }
 
         if (BackDKey == true)
         {
-            ExDB.PuzzleD2_1 = true;
+            //ExDB.PuzzleD2_1 = true;
+            ExDB.keyPuzzle.PD = true;
         }
 
         if (Pliers == true)
         {
-            ExDB.PuzzleD2_2 = true;
+            //ExDB.PuzzleD2_2 = true;
+            ExDB.pliersPuzzle.PD = true;
         }
     }
 

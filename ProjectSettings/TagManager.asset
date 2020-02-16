@@ -20,6 +20,7 @@ TagManager:
   - ExitDoor
   - PageMenu
   - Map
+  - PlayerRoom
   layers:
   - Default
   - TransparentFX

@@ -20,6 +20,8 @@ public class CodeLock : MonoBehaviour
     public bool doneCLk1 = false;
     public bool doneCLk2 = false;
 
+    public ExitDoors ED;
+
 
     private void Start()
     {
@@ -36,9 +38,15 @@ public class CodeLock : MonoBehaviour
             if (door1 == true)
             {
                 doneCLk1 = true;
+                ED.padlockPuzzle.PD = true;
+                ED.padlockPuzzle.firstInteraction = true;
             }
             else
+            {
                 doneCLk2 = true;
+                ED.padlockPuzzle.PD = true;
+                ED.padlockPuzzle.firstInteraction = true;
+            }
         }
 
         else

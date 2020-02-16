@@ -16,13 +16,13 @@ public class PatrollAgent : MonoBehaviour
 
     [SerializeField] bool noise;
     [SerializeField] bool checkUp;
+    private bool canSee;
 
     [SerializeField] private KeyCode runKey;
 
     private NavMeshAgent agent;
 
     public AudioSource ad;
-
 
     void Start()
     {
@@ -32,33 +32,26 @@ public class PatrollAgent : MonoBehaviour
         checkUp = false;
 
         NextPoint();
+
+        StartCoroutine(CheckUp());
     }
 
 
     void Update()
     {
-        SeePlayer();
         StartPath();
 
-        if (Input.GetKey(runKey) || Input.GetButtonDown("Drop"))
+        if (Input.GetKey(runKey) || Input.GetButtonDown("Drop") || canSee)
         {
             noise = true;
         }
+
         else
         {
             noise = false;
         }
 
-        if (noise == true)
-        {
-            agent.speed = 6;
-            ad.pitch = 1.7f;
-        }
-        else
-        {
-            agent.speed = 4;
-            ad.pitch = 1;
-        }
+        setHype(noise);
     }
 
     void NextPoint()
@@ -84,11 +77,6 @@ public class PatrollAgent : MonoBehaviour
         {
             FollowPlayer();
         }
-
-        if(checkUp == true)
-        {
-            RoomCheckup();
-        }
     }
 
     void FollowPlayer()
@@ -101,18 +89,55 @@ public class PatrollAgent : MonoBehaviour
         agent.destination = playerPos.position;
     }
 
-    void RoomCheckup()
+    public void CanSee(bool canSee)
     {
-        if (roomPoint == null)
-        {
-            return;
-        }
-
-        agent.destination = roomPoint.position;
+        this.canSee = canSee;
     }
 
-    void SeePlayer()
+    public void onPlayerHidden(bool hidden)
     {
+        canSee = !hidden;
+    }
 
+    public void setHype(bool hype)
+    {
+        if (hype == false)
+        {
+            agent.speed = 6;
+            ad.pitch = 1.7f;
+        }
+
+        else
+        {
+            agent.speed = 2;
+            ad.pitch = 1;
+        }
+    }
+
+    private IEnumerator CheckUp()
+    {
+        yield return new WaitForSeconds(300);
+        Debug.LogWarning("Checkup");
+        FindObjectOfType<SoundManager>().Play("Alarm");
+        agent.destination = roomPoint.position;
+
+        StartCoroutine(CheckUp());
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Dooropen d = collision.collider.GetComponent<Dooropen>();
+
+        if(d != null)
+        {
+            d.OpenDoor();
+        }
+
+        if (collision.collider.gameObject.tag.Equals("Player"))
+        {
+            PlayerMov Pm = collision.collider.GetComponent<PlayerMov>();
+            Pm.Lives--;
+            Pm.teleport(roomPoint.position);
+        }
     }
 }

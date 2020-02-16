@@ -6,6 +6,23 @@ using UnityEngine.SceneManagement;
 
 public class ExitDoors : MonoBehaviour
 {
+    [System.Serializable]
+    public class puzzle
+    {
+        public string name;
+        public bool PD;
+
+        public bool firstInteraction = false;
+
+        public System.Action<puzzle> action;
+        public void OnInteract()
+        {
+            action?.Invoke(this);
+        }
+    }
+
+
+
     public float objDistance;
     public GameObject actionDisplay;
     public GameObject actionText;
@@ -15,6 +32,12 @@ public class ExitDoors : MonoBehaviour
 
     public bool door1;
     public bool firstInteraction = false;
+
+    public puzzle[] d;
+    public puzzle keyPuzzle => d[0];
+    public puzzle pliersPuzzle => d[1];
+    public puzzle padlockPuzzle => d[2];
+    public puzzle voicePuzzle => d[1];
 
     public bool PuzzleD1_1;
     public bool PuzzleD1_2;
@@ -37,7 +60,95 @@ public class ExitDoors : MonoBehaviour
     private CodeLock CLck2;
     private VoiceControlPuzzle VCP;
 
-    //public AudioSource doorSound;
+
+    private void Awake()
+    {
+        keyPuzzle.action = onKeypuzzle;
+
+        if (door1 == false)
+        {
+            pliersPuzzle.action = onPlierspuzzle;
+        }
+
+        else
+        {
+            pliersPuzzle.action = onVoicepuzzle;
+        }
+    }
+
+    public void onKeypuzzle(puzzle p)
+    {
+        if(p.PD)
+        {
+            if (p.firstInteraction)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else
+            {
+                FindObjectOfType<SoundManager>().Play("Door_Unlocked");
+                StartCoroutine(UseObj());
+                p.firstInteraction = true;
+            }
+        }
+
+        else if (!firstInteraction)
+        {
+            StartCoroutine(DoorInfo());
+            firstInteraction = true;
+        }
+    }
+
+    public void onPlierspuzzle(puzzle p)
+    {
+        if (p.PD)
+        {
+            if (p.firstInteraction)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else
+            {
+                FindObjectOfType<SoundManager>().Play("Plier_Use");
+                StartCoroutine(UseObj());
+                p.firstInteraction = true;
+            }
+        }
+
+        else if (!firstInteraction)
+        {
+            StartCoroutine(DoorInfo());
+
+            firstInteraction = true;
+        }
+
+    }
+
+    public void onVoicepuzzle(puzzle p)
+    {
+        if (p.PD)
+        {
+            if (p.firstInteraction)
+            {
+                StartCoroutine(AlreadyUsed());
+            }
+
+            else
+            {
+                FindObjectOfType<SoundManager>().Play("Door_Unlocked");
+                StartCoroutine(UseObj());
+                p.firstInteraction = true;
+            }
+        }
+
+        else if (!firstInteraction)
+        {
+            StartCoroutine(DoorInfo());
+            firstInteraction = true;
+        }
+    }
 
     private void Start()
     {
@@ -100,89 +211,27 @@ public class ExitDoors : MonoBehaviour
 
     void PuzzleManag()
     {
-        if(door1 == true)
+        puzzle p = null;
+        foreach (puzzle p2 in d)
         {
-            if (PuzzleD1_1 == true)
+            if (!p2.firstInteraction)
             {
-                FindObjectOfType<SoundManager>().Play("Door_Unlocked");
-                StartCoroutine(UseObj());
-                PD1_1 = true; 
-            }
-
-            else if (firstInteraction == false)
-            {
-                StartCoroutine(DoorInfo());
-            }
-
-            else if (PD1_1 == true)
-            {
-                StartCoroutine(AlreadyUsed());
-            }
-
-            else if (PD1_1 == true && PuzzleD1_2 == true && PuzzleD1_3 == true)
-            {
-                FindObjectOfType<SoundManager>().Play("Door_Open");
-                canExit1 = true;
-                newText.SetText(" ");
-                actionDisplay.SetActive(false);
-                actionText.SetActive(false);
-                StartCoroutine(NextScene());
-            }
-
-            else
-            {
-                StartCoroutine(DoorInfoAfter());
-                actionDisplay.SetActive(false);
+                p = p2;
+                break;
             }
         }
 
+
+        if(p != null)
+            p.OnInteract();
         else
         {
-
-            if (PuzzleD2_1 == true)
-            {
-                FindObjectOfType<SoundManager>().Play("Door_Unlocked");
-                StartCoroutine(UseObj());
-                PD2_1 = true;
-            }
-
-            if (PuzzleD2_2 == true)
-            {
-                FindObjectOfType<SoundManager>().Play("Plier_Use");
-                StartCoroutine(UseObj());
-                PD2_2 = true;
-            }
-
-            else if (firstInteraction == false)
-            {
-                StartCoroutine(DoorInfo());
-            }
-
-            else if (PD2_1 == true)
-            {
-                StartCoroutine(AlreadyUsed());
-            }
-
-            else if (PD2_2 == true)
-            {
-                StartCoroutine(AlreadyUsed());
-            }
-
-            else if (PD2_1 == true && PD2_2 == true && PuzzleD2_3 == true)
-            {
-                FindObjectOfType<SoundManager>().Play("Door_Open");
-                canExit2 = true;
-                newText.SetText(" ");
-                actionDisplay.SetActive(false);
-                actionText.SetActive(false);
-                StartCoroutine(NextScene());
-            }
-
-            else if (firstInteraction == true)
-            {
-                StartCoroutine(DoorInfoAfter());
-                actionDisplay.SetActive(false);
-            }
+            FindObjectOfType<SoundManager>().Play("Door_Open");
+            canExit2 = true;
+            newText.SetText(" ");
+            actionDisplay.SetActive(false);
+            actionText.SetActive(false);
+            StartCoroutine(NextScene());
         }
     }
 
@@ -217,6 +266,7 @@ public class ExitDoors : MonoBehaviour
                 doorInfo.SetText(" ");
                 firstInteraction = true;
             }
+
             else
             {
                 FindObjectOfType<SoundManager>().Play("Door_Locked");
@@ -294,8 +344,10 @@ public class ExitDoors : MonoBehaviour
     {
         //FadeOut
         //doorSound.Play();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         Debug.Log("Won!");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+
 }

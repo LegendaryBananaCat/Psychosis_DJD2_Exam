@@ -23,6 +23,8 @@ public class VoiceControlPuzzle : MonoBehaviour
     bool fakePassW;
     bool wrongPassW;
 
+    public ExitDoors ED;
+
     public bool doneVC1 = false;
 
     [SerializeField]private PlayerLook pLook;
@@ -69,7 +71,6 @@ public class VoiceControlPuzzle : MonoBehaviour
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = true;
                     pLook.enabled = false;
-                    PlayerInput();
                 }
             }
         }
@@ -84,9 +85,11 @@ public class VoiceControlPuzzle : MonoBehaviour
 
     public void PlayerInput()
     {
-        if (inputF.text == "no" || inputF.text == "no")
+        if (inputF.text == "no" || inputF.text == "No")
         {
             truePassW = true;
+            ED.voicePuzzle.PD = true;
+            ED.voicePuzzle.firstInteraction = true;
             StartCoroutine(MonologueManage());
             doneVC1 = true;
         }
@@ -120,7 +123,7 @@ public class VoiceControlPuzzle : MonoBehaviour
             Destroy(this);
         }
 
-        else if (wrongPassW == true)
+        else
         {
             PmonologueObj.SetActive(true);
             Pmonologue.text = "Wrong one. I bet it's some cheesy line or something. Yuck!";

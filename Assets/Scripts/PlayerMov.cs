@@ -11,6 +11,8 @@ public class PlayerMov : MonoBehaviour
     [SerializeField] private float runBuildUpSpeed;
     [SerializeField] private KeyCode runKey;
 
+    private PatrollAgent[] Lpa;
+
     private float movementSpeed;
 
     private bool walking;
@@ -26,10 +28,17 @@ public class PlayerMov : MonoBehaviour
     private bool isJumping;
     public bool hidden;
 
+    public int Lives = 3;
+
     private void Awake()
     {
         charController = GetComponent<CharacterController>();
         walking = false;
+    }
+
+    private void Start()
+    {
+        Lpa = GameObject.FindObjectsOfType<PatrollAgent>();
     }
 
     private void Update()
@@ -82,6 +91,15 @@ public class PlayerMov : MonoBehaviour
         if (other.gameObject.tag == "Hide")
         {
             hidden = true;
+            onHidden?.Invoke(true);
+        }
+
+        if (other.gameObject.tag == "PlayerRoom")
+        {
+            foreach(PatrollAgent PA in Lpa)
+            {
+                PA.setHype(true);
+            }
         }
     }
 
@@ -90,6 +108,15 @@ public class PlayerMov : MonoBehaviour
         if (other.gameObject.tag == "Hide")
         {
             hidden = false;
+            onHidden?.Invoke(false);
+        }
+
+        if (other.gameObject.tag == "PlayerRoom")
+        {
+            foreach (PatrollAgent PA in Lpa)
+            {
+                PA.setHype(false);
+            }
         }
     }
 
@@ -124,5 +151,14 @@ public class PlayerMov : MonoBehaviour
 
         charController.slopeLimit = 45.0f;
         isJumping = false;
+    }
+
+    public event System.Action <bool> onHidden;
+
+    public void teleport(Vector3 teleportPoint)
+    {
+        charController.enabled = false;
+        transform.position = teleportPoint;
+        charController.enabled = true;
     }
 }

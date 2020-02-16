@@ -86,6 +86,10 @@ public class InventoryScript : MonoBehaviour
                 else if (this.tag == ("Map"))
                 {
                     FindObjectOfType<SoundManager>().Play("Obj_Pickup");
+                    indicCross.SetActive(false);
+                    actionDisplay.SetActive(false);
+                    actionText.SetActive(false);
+                    OpenPage.SetActive(false);
                     CTb.enabled = true;
                     MapObj.SetActive(false);
                 }
@@ -106,7 +110,9 @@ public class InventoryScript : MonoBehaviour
         actionDisplay.SetActive(false);
         actionText.SetActive(false);
         OpenPage.SetActive(false);
-        Destroy(this);
+
+        if (this.tag != "Map")
+            Destroy(this);
     }
 
     IEnumerator InventoryInfo()

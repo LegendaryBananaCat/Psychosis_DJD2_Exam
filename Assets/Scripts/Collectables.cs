@@ -12,13 +12,13 @@ public class Collectables : MonoBehaviour
     private PlayerLook pLook;
 
     public bool mapOpen;
-    // Start is called before the first frame update
+
     void Start()
     {
         mapOpen = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if(Input.GetButtonDown("Map") && mapOpen == false)

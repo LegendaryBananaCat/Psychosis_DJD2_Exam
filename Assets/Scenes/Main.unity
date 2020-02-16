@@ -1240,7 +1240,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Page added to 'Diaries' in the Begining Room.
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1309,13 +1309,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 34426263}
-    characterCount: 45
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 7
-    wordCount: 8
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -7998,6 +7998,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 20eec4d8c45b25f41a8ed76b9f262977, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 6dd109bc760ad0944b690812e0bb4cab,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 6dd109bc760ad0944b690812e0bb4cab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18734,7 +18739,7 @@ GameObject:
   - component: {fileID: 642897799}
   m_Layer: 0
   m_Name: ItemTrigger
-  m_TagString: Book
+  m_TagString: Map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41148,6 +41153,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d6549245d4b4c5748be3b398dcf9451d, type: 2}
+    - target: {fileID: -6057140222963153312, guid: b8db2bcf57813874b9aefe603e4493bf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: b8db2bcf57813874b9aefe603e4493bf,
         type: 3}
       propertyPath: m_LocalPosition.x

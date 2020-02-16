@@ -162,7 +162,7 @@ public class ObjPickUp : MonoBehaviour
             ExDB.PuzzleD2_2 = false;
         }
 
-        //StartCoroutine(OriginPos());
+        StartCoroutine(OriginPos());
     }
 
     IEnumerator OriginPos()
